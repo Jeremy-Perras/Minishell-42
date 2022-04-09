@@ -6,12 +6,12 @@
 #    By: jperras <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 13:14:04 by jperras           #+#    #+#              #
-#    Updated: 2022/04/08 16:15:21 by jperras          ###   ########.fr        #
+#    Updated: 2022/04/09 13:28:47 by jperras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = minishell
 
-SRCS = get_next_line.c get_next_line_utils.c minishell.c 
+SRCS = minishell.c minishell_utils.c
 
 FLAGS = -Wall -Werror -Wextra 
 
@@ -40,7 +40,7 @@ test:
 	$(CC) $(FLAGS) $(INCLUDES) $(SRCS)
 
 debug:
-	$(CC $(FLAGS) -o $(NAME) $(LIBFT) $(LIB) $(INCLUDES) $(SRCS)
+	$(CC) $(FLAGS) -o $(NAME) $(LIBFT) $(LIB) $(INCLUDES) $(SRCS)
 
 clean :
 	make clean -C libft

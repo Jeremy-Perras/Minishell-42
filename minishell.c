@@ -6,20 +6,35 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/08 16:22:39 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/09 14:42:06 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Minishell.h"
 
-int	main(void)
+int	main(int argc, char **argv, char **env)
 {
+	(void)	argc;
+	(void)	argv;
+	char	*buf;
+	int		i;
+	t_minishell shell;
 
-	char* buf;
-	buf = readline("$> "); 
+	buf = readline("$> ");
  	 while (buf  != NULL) 
 	 {
-			printf("cmd = %s\n", buf);
+			if(shell.path)
+			{
+				i = 0;
+				while(shell.path[i])
+				{
+					free(shell.path[i]);
+					i++;
+				}
+			}
+			shell.path = ft_split(buf, '|');
+			pipex(&shell, env);
 			free(buf);
     		buf = readline("$> ");
+
 	}
 }
