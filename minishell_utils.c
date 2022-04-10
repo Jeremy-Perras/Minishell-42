@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/09 15:45:51 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/10 15:15:03 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_child_process(char *argv, char **env, int *end)
 
 void	ft_parent_process(int *end, int *fd)
 {
-	dup2(end[1], STDOUT_FILENO);
 	close(end[1]);
 	*fd = end[0];
 	wait(NULL);
@@ -42,10 +41,12 @@ char	**ft_path(char **env)
 		i++;
 	if (!env[i])
 	{
-		write(2, "Path not found\n", 15);
-		exit(1);
+		path = malloc(sizeof(char) * ft_strlen("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin"));
+		path = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin";
+		
 	}
-	path = env[i] + 5;
+	else
+		path = env[i] + 5;
 	mypath = ft_split(path, ':');
 	i = 0;
 	while (mypath[i])
@@ -93,9 +94,9 @@ void	pipex(t_minishell *shell, char **env)
 		parent = fork();
 		if (!parent)
 		{
-			dup2(end[0], STDIN_FILENO);
-			//if (!shell->path[j + 1])
-			//	dup2(end[1], STDOUT_FILENO);
+			dup2(fd, STDIN_FILENO);
+			if (shell->path[j + 1])
+				dup2(end[1], STDOUT_FILENO);
 			ft_child_process(shell->path[j], env, end);
 		}
 		else
