@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/10 15:15:03 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/11 09:11:42 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**ft_path(char **env)
 		i++;
 	if (!env[i])
 	{
-		path = malloc(sizeof(char) * ft_strlen("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin"));
+		path = malloc(sizeof(char) * (ft_strlen("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin") + 1 ));
 		path = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin";
 		
 	}

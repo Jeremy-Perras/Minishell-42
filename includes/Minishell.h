@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/09 10:53:36 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/12 16:39:39 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -20,10 +20,15 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <curses.h>
+# include <term.h>
+# include <signal.h>
+typedef void (*t_cho)(char *buf);
 
 typedef struct s_minishell
 {
 	char **path;
+	char ***env;
 
 
 
@@ -42,9 +47,11 @@ char	*ft_cmd(char *comd, char **env);
 void	pipex(t_minishell *shell, char **env);
 void	ft_child_process(char *argv, char **env, int *end);
 void	ft_parent_process(int *end, int *fd);
-
-
-
+/*
+ *minishell_utils1.c
+ *
+ */
+void ft_build_in(char *buf, t_minishell *shell);
 
 
 

@@ -6,12 +6,12 @@
 #    By: jperras <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 13:14:04 by jperras           #+#    #+#              #
-#    Updated: 2022/04/10 16:49:20 by jperras          ###   ########.fr        #
+#    Updated: 2022/04/12 14:21:43 by jperras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = minishell
 
-SRCS = minishell.c minishell_utils.c minishell_utils2.c
+SRCS = minishell.c minishell_utils.c minishell_utils1.c
 
 FLAGS = -Wall -Werror -Wextra 
 
@@ -19,7 +19,7 @@ CC = gcc
 
 CCDB = gcc -g
 
-LIB = -lreadline
+LIB = -lreadline -lcurses
 
 LIBFT = -L libft -lft
 
