@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 16:49:37 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/12 14:19:58 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/13 09:28:13 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Minishell.h"
@@ -23,6 +23,12 @@ void	ft_build_in(char *buf, t_minishell *shell)
 	{
 		tab3 = ft_split(buf, ' ');
 		chdir(tab3[1]);
+	}
+	else if (!(ft_strncmp(buf, "^C", 2)))
+	{
+		printf("test");
+	
+	
 	}
 	else if (!(ft_strncmp(buf, "echo", 4)))
 	{

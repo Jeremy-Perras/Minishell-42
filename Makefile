@@ -6,12 +6,13 @@
 #    By: jperras <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 13:14:04 by jperras           #+#    #+#              #
-#    Updated: 2022/04/12 14:21:43 by jperras          ###   ########.fr        #
+#    Updated: 2022/04/13 14:35:27 by jperras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = minishell
 
-SRCS = minishell.c minishell_utils.c minishell_utils1.c
+SRCS = minishell.c minishell_utils.c minishell_utils1.c minishell_utils2.c
+
 
 FLAGS = -Wall -Werror -Wextra 
 

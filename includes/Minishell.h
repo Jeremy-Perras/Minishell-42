@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/12 16:39:39 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/13 16:55:31 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -36,8 +36,6 @@ typedef struct s_minishell
 
 } t_minishell;
 
-
-
 /*
  *minishell_utils.c
  *
@@ -52,7 +50,7 @@ void	ft_parent_process(int *end, int *fd);
  *
  */
 void ft_build_in(char *buf, t_minishell *shell);
-
+void		sigint_handler(int sign_num);
 
 
 
