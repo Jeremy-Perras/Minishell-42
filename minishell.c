@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/14 10:32:07 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/15 09:17:35 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Minishell.h"
@@ -29,6 +29,11 @@ int	main(int argc, char **argv, char **env)
 	tmp = NULL;
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
+	signal(EOF, sigint_handler);
+	 if (signal(SIGINT, &sigint_handler) == SIG_ERR) {
+        	write(1,"test",4);
+		 return EXIT_FAILURE;
+    }
 	buf = readline("$> ");
 	shell.env = &env;
 	shell.path = NULL;
