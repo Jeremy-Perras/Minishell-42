@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/15 09:17:35 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/15 14:37:18 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Minishell.h"
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char **env)
         	write(1,"test",4);
 		 return EXIT_FAILURE;
     }
-	buf = readline("$> ");
+	buf = readline("\e[96m$> \e[97m");
 	shell.env = &env;
 	shell.path = NULL;
  	 while (buf != NULL) 
@@ -43,6 +43,6 @@ int	main(int argc, char **argv, char **env)
 		if(buf[0])
 			add_history(buf);
 		free(buf);
-    	buf = readline("$> ");
+    	buf = readline("\e[96m$> \e[97m");
 	}
 }

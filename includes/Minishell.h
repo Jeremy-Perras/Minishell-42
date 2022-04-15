@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/13 16:55:31 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/15 16:18:22 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -24,6 +24,8 @@
 # include <term.h>
 # include <signal.h>
 typedef void (*t_cho)(char *buf);
+
+int	g_status;
 
 typedef struct s_minishell
 {
@@ -52,6 +54,14 @@ void	ft_parent_process(int *end, int *fd);
 void ft_build_in(char *buf, t_minishell *shell);
 void		sigint_handler(int sign_num);
 
+/*
+ *	buildin
+ *
+ */
+void	ft_buildin_cd(char *buf, t_minishell *shell);
+void	ft_buildin_echo(char * buf, t_minishell *shell);
+void	ft_buildin_pwd(char *buf, t_minishell *shell);
+void	ft_buildin_unset(char *buf, t_minishell *shell);
 
 
 
