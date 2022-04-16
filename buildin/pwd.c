@@ -6,16 +6,19 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:34:45 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/15 16:16:05 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/16 13:20:44 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_buildin_pwd(char *buf, t_minishell *shell)
+void	ft_buildin_pwd(t_minishell *shell)
 {
 	char tmp[2048];
 
-	if (getcwd(tmp),sizeof(tmp) == -1)
-		g_status = 1;	
-	printf("%s", tmp);
-	g_status = 0;
+	if (getcwd(tmp,sizeof(tmp)) == -1)
+		g_status = 1;
+	else
+	{	
+		printf("%s", tmp);
+		g_status = 0;
+	}
 }	

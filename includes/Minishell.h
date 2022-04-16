@@ -6,7 +6,7 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/16 11:38:31 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/16 13:26:07 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -30,21 +30,19 @@ int	g_status;
 typedef struct s_minishell
 {
 	char **path;
-	char ***env;
-
-
-
-
-
-} t_minishell;
-/*
+	char **env;
+	char **args;
+	int fd_in;
+	int fd_out;
+	int end[2];
+} t_minishell;/*
  * ----- buildin -----
  */
-void	ft_buildin_cd(char *buf, t_minishell *shell);
-void	ft_buildin_echo(char * buf, t_minishell *shell);
-void	ft_buildin_pwd(char *buf, t_minishell *shell);
-void	ft_buildin_unset(char *buf, t_minishell *shell);
-void	ft_buildin_exit(char *buf, t_minishell);
+void	ft_buildin_cd(t_minishell *shell);
+void	ft_buildin_echo(t_minishell *shell);
+void	ft_buildin_pwd(t_minishell *shell);
+void	ft_buildin_unset(t_minishell *shell);
+void	ft_buildin_exit(t_minishell *shell);
 
 /*
  * ----- src -----

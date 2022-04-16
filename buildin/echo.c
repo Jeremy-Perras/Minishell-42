@@ -6,34 +6,32 @@
 /*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:05:34 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/15 15:33:04 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/16 13:24:00 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Minishell.h"
 
-void	ft_buildin_echo(char * buf, t_minishell *shell)
+void	ft_buildin_echo(t_minishell *shell)
 {
-	char	*tab;
-	int		i;
+	int	i;
 
-	tab = ft_split(buf, ' ');
-	if(!strncmp(tab[1], "-n", 2))
+	i = 0;
+	if(!strncmp(shell->args[1], "-n", 2))
 	{
-		while(buf[i])
+		while(shell->args[2][i])
 		{
-			printf("%c"buf[i]);
+			printf("%c",shell->args[2][i]);
 			i++;
 		}
 	}
 	else 
 	{
-		i = 5;
-		while (buf[i])
+		while (shell->args[1][i])
 		{
-			printf("%c", buf[i]);
+			printf("%c", shell->args[1][i]);
 			i++;
 		}
+		printf("\n");
 	}
-	printf("\n");
 	g_status = 0;
 }
