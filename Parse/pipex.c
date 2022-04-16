@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/16 20:04:16 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/16 20:09:40 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 static void	ft_child_process(char *argv, char **env, t_minishell *shell)
 {
-	// char **input;
-	// char **input2;
 	close(shell->end[0]);
 	if (shell->input)
 	{
@@ -35,7 +33,6 @@ static void	ft_child_process(char *argv, char **env, t_minishell *shell)
 	}
 	int i = -1;
 	shell->input = ft_split2(argv, " \t");
-	// shell->input = ft_split(argv, ' ');
 	shell->input2 = (char **)malloc(sizeof(char **) * 5);
 	while (shell->input[++i])
 		shell->input2[i] = quote_ignore(shell->input[i]);
@@ -66,7 +63,6 @@ static void	ft_child_process(char *argv, char **env, t_minishell *shell)
 
 static void	ft_parent_process(t_minishell *shell)
 {
-	//printf("PARENT\n");
 	close(shell->end[1]);
 	shell->fd_in = shell->end[0];
 	wait(NULL);
@@ -79,8 +75,6 @@ void	pipex(char *buf, t_minishell *shell, char **env)
 	pid_t	parent;
 	int		j;
 
-	//printf("%s\n", buf);
-	//printf("PIPEX\n");
 	shell->fd_in = 0;
 	j = -1;
 	shell->path = ft_split(buf, '|');

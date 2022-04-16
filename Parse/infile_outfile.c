@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:25:32 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/16 20:02:18 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/16 20:08:37 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,6 @@ static void ft_args(char **input, t_minishell *shell)
 
 /******************** GET FLAGS, ARGS AND OUT REDIRECTION *********************/
 
-static int ft_strsize(char **input)
-{
-	int i = 0;
-	while (input[i])
-		i++;
-	return (i);
-}
-
 char **ft_flags(char **input, char **env, t_minishell *shell)
 {
 	if (shell->flags)
@@ -107,21 +99,10 @@ char **ft_flags(char **input, char **env, t_minishell *shell)
 	}
 	shell->flags = (char **)malloc(sizeof(char **) * 5);
 	(void)env;
-	int i = 1;
 	shell->flags[0] = ft_strdup(input[0]);
-	int size = ft_strsize(input);
-	printf("******\n");
-	printf("%d\n", size);
-	if (size > 1)
-	{
-		printf("++++++\n");
-		while(input[i] && input[i][0] == '-' && ft_strlen(input[i]) >= 2)
-		{
-			shell->flags[i] = ft_strdup(input[i]);
-			i++;
-		}
-	}
-	printf("------\n");
+	int i = 0;
+	while(input[++i] && input[i][0] == '-' && ft_strlen(input[i]) >= 2)
+		shell->flags[i] = ft_strdup(input[i]);
 	shell->flags[i] = NULL;
 	if(input[i] && ft_isalnum(input[i][0]))
 	{
