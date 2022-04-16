@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/16 13:26:07 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:59:02 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef MINISHELL_H
+
 # define MINISHELL_H
 # include"../libft/libft.h"
 # include <stdio.h>
@@ -23,7 +23,6 @@
 # include <curses.h>
 # include <term.h>
 # include <signal.h>
-typedef void (*t_cho)(char *buf);
 
 int	g_status;
 

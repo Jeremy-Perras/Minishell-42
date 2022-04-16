@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/16 11:42:27 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:54:04 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ static int ft_quote(char *buf)
 	{
 		if (buf[i] == '\"')
 			count_double++;
-		if (buf[i] == '\"')
+		if (buf[i] == '\'')
 			count_simple++;
 	}
-	if ((count_double && !(count_double % 2))
-		|| (count_simple && !(count_simple % 2)))
+	if ((count_double && (count_double % 2) != 0)
+		|| (count_simple && (count_simple % 2)) != 0)
 	{
+		printf("\t%d\n", count_double);
 		printf("Quotes must be closed\n");
 		return (0);
 	}
@@ -115,6 +116,7 @@ void ft_parse(char *buf, t_minishell *shell)
 {
 	char *buf2;
 
+	//printf("PARSE\n");
 	if (!ft_quote(buf))
 		return ;
 	if (ft_status(buf))

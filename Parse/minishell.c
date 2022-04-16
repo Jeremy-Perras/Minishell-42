@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/16 11:42:31 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/16 19:53:01 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,25 @@ static void ft_init(t_minishell **shell, char **env)
 	*shell = (t_minishell *)malloc(sizeof(t_minishell));
 	(*shell)->env = env;
 	(*shell)->path = NULL;
-	(*shell)->args = NULL;
+	(*shell)->flags = NULL;
+	(*shell)->input = NULL;
+	(*shell)->input2 = NULL;
+	(*shell)->fd_in = 0;
+	(*shell)->fd_out = 0;
 }
 
 static void ft_free_shell(t_minishell *shell)
 {
-	int i = -1;
+	int i;
+	int j;
 
+	i = -1;
 	while (shell->path[++i])
 		free (shell->path[i]);
 	free(shell->path);
-	i = -1;
-	while (shell->args[++i])
-		free(shell->args[i]);
-	free(shell->args);
+	j = 2;
+	while (++j < 100)
+		close(j);
 	free(shell);
 }
 
@@ -38,15 +43,15 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)	argc;
 	(void)	argv;
-	//(void)	env;
+	(void)	env;
 	char	*buf;
 
 	t_minishell *shell;
 	// signal(SIGQUIT, sigint_handler);
 	// signal(SIGINT, sigint_handler);
 	buf = readline("$> ");
- 	 while (buf != NULL)
-	 {
+ 	while (buf != NULL)
+	{
 		ft_init(&shell, env);
 		if(buf[0])
  			add_history(buf);

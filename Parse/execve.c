@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/16 11:45:41 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/16 19:47:48 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ static char	**ft_path(char **env)
 	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
 	if (!env[i])
-		path = ft_strdup("/usr/local/bin:/usr/bin:/bin:/usr/sbin:";
-		path = ft_strjoin(path, "/sbin:/usr/local/munki:/Library/Apple/usr/bin");
+	{
+		path = ft_strdup("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin");
+	}
 	else
 		path = env[i] + 5;
 	mypath = ft_split(path, ':');
@@ -46,17 +47,17 @@ static char	**ft_path(char **env)
 static char	*ft_cmd(char *cmd, char **env)
 {
 	char	**mypath;
-	char	*cmd;
+	char	*cmd2;
 	int		i;
 
 	i = 0;
 	mypath = ft_path(env);
 	while (mypath[i])
 	{
-		cmd = ft_strjoin(mypath[i], cmd);
-		if (access(cmd, F_OK) == 0)
-			return (cmd);
-		free(cmd);
+		cmd2 = ft_strjoin(mypath[i], cmd);
+		if (access(cmd2, F_OK) == 0)
+			return (cmd2);
+		free(cmd2);
 		i++;
 	}
 	write(2, "command not found\n", 18);
@@ -67,6 +68,6 @@ static char	*ft_cmd(char *cmd, char **env)
 
 void ft_exceve(char **input, char **env, t_minishell *shell)
 {
-	shell->args = ft_args(input, env, shell);
-	execve(ft_cmd(input[0], env), shell->args, env);
+ 	ft_flags(input, env, shell);
+	execve(ft_cmd(input[0], env), shell->flags, env);
 }

@@ -6,7 +6,7 @@
 #    By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/14 01:08:17 by dhaliti           #+#    #+#              #
-#    Updated: 2021/12/14 01:11:45 by dhaliti          ###   ########.fr        #
+#    Updated: 2022/04/16 14:29:55 by dhaliti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ RED			= \033[0;31m
 RST			= \033[0m
 END			= \e[0m
 
-SRCS		= minishell.c ft_parse.c pipex.c utils.c infile_outfile.c ft_split2.c execve.c minishell_utils1.c minishell_utils2.c
+SRCS		= minishell.c ft_parse.c pipex.c utils.c infile_outfile.c ft_split2.c execve.c
 NAME		= minishell
 OBJS_DIR	= objs/
 OBJS		= $(SRCS:.c=.o)
@@ -31,7 +31,7 @@ $(OBJS_DIR)%.o : %.c
 	@printf	"\033[2K\r${BLU}[BUILD]${RST} '$<' $(END)"
 
 $(NAME): $(OBJECTS_PREFIXED) maker
-	@$(CC) -o $(NAME) $(OBJECTS_PREFIXED) $(CC_FLAGS) libft.c
+	@$(CC) -o $(NAME) $(OBJECTS_PREFIXED) $(CC_FLAGS) ../libft/libft.a -lreadline -lcurses
 	@printf "\033[2K\r\033[0;32m[END]\033[0m $(NAME)$(END)\n"
 
 all: $(NAME)

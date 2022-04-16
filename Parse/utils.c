@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:24:15 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/15 15:24:41 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:59:21 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ char *quote_ignore(char *input)
 		input[ft_strlen(input) - 1] = '\0';
 		return (input + 1);
 	}
-	return NULL;
+	return input;
 }

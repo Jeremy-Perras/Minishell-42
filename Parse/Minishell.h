@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/16 11:46:54 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/16 19:52:40 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+# include<readline/readline.h>
+# include<readline/history.h>
 # include <string.h>
 # include <sys/wait.h>
 # include <fcntl.h>
@@ -26,16 +26,16 @@
 # include <signal.h>
 # include <stdio.h>
 
-typedef void (*t_cho)(char *buf);
-
 typedef struct s_minishell
 {
 	char **path;
 	char **env;
-	char **args;
+	char **flags;
 	int fd_in;
 	int fd_out;
 	int end[2];
+	char **input;
+	char **input2;
 } t_minishell;
 
 /*
@@ -50,10 +50,11 @@ void	pipex(char *buf, t_minishell *shell, char **env);
 char	**ft_split2(char *str, char *charset);
 void 	ft_parse(char *buf, t_minishell *shell);
 void 	ft_exceve(char **input, char **env, t_minishell *shell);
-char 	**ft_args(char **input, char **env, t_minishell *shell);
+char 	**ft_flags(char **input, char **env, t_minishell *shell);
 char 	**ft_infile(char **input, t_minishell *shell);
-void 	ft_redirect(char **input, t_minishell);
-void 	ft_append(char **input, t_minishell);
+void 	ft_redirect(char **input, t_minishell *shell);
+
+void 	ft_append(char **input, t_minishell *shell);
 int		ft_strcmp(char *s1, char *s2);
 char 	*quote_ignore(char *input);
 /*
