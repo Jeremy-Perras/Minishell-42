@@ -6,13 +6,13 @@
 #    By: jperras <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 13:14:04 by jperras           #+#    #+#              #
-#    Updated: 2022/04/13 14:35:27 by jperras          ###   ########.fr        #
+#    Updated: 2022/04/16 11:34:45 by jperras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = minishell
 
-SRCS = minishell.c minishell_utils.c minishell_utils1.c minishell_utils2.c
-
+SRCS =  minishell.c minishell_utils1.c minishell_utils2.c buildin/cd.c buildin/echo.c \ 
+		buildin/exit.c buildin/pwd.c buidlin/unset.c src/pipex.c src/signal.c
 
 FLAGS = -Wall -Werror -Wextra 
 
