@@ -6,20 +6,19 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:25:32 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/16 20:08:37 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/18 12:22:21 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-
 /********************************** HEREDOC ***********************************/
 
-static char **ft_heredoc(char **input, t_minishell *shell)
+static char	**ft_heredoc(char **input, t_minishell *shell)
 {
-	char *limiter;
-	char *heredoc;
-	int fd;
+	char	*limiter;
+	char	*heredoc;
+	int		fd;
 
 	limiter = input[1];
 	fd = open(".heredoc", O_WRONLY | O_TRUNC | O_CREAT, 0664);
@@ -27,7 +26,7 @@ static char **ft_heredoc(char **input, t_minishell *shell)
 	while (heredoc != NULL)
 	{
 		if (ft_strcmp(heredoc, limiter))
-			break;
+			break ;
 		if (heredoc[0])
 		{
 			ft_putstr_fd(heredoc, fd);
@@ -42,7 +41,7 @@ static char **ft_heredoc(char **input, t_minishell *shell)
 }
 /*************************** GET INFILE AND HEREDOC ***************************/
 
-char **ft_infile(char **input, t_minishell *shell)
+char	**ft_infile(char **input, t_minishell *shell)
 {
 	if (ft_strcmp(input[0], "<"))
 	{
@@ -63,7 +62,7 @@ char **ft_infile(char **input, t_minishell *shell)
 
 /*********************************** APPEND ***********************************/
 
-void ft_append(char **input, t_minishell *shell)
+void	ft_append(char **input, t_minishell *shell)
 {
 	shell->fd_out = open(input[0], O_APPEND);
 	dup2(shell->fd_out, STDOUT_FILENO);
@@ -71,40 +70,42 @@ void ft_append(char **input, t_minishell *shell)
 
 /********************************** REDIRECT **********************************/
 
-void ft_redirect(char **input, t_minishell *shell)
+void	ft_redirect(char **input, t_minishell *shell)
 {
-	shell->fd_out = open(input[0],  O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	shell->fd_out = open(input[0], O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	dup2(shell->fd_out, STDOUT_FILENO);
 }
 
 /************************************ ARGS ************************************/
 
-static void ft_args(char **input, t_minishell *shell)
+static void	ft_args(char **input, t_minishell *shell)
 {
 	shell->fd_in = open(input[0], O_RDONLY);
 	dup2(shell->fd_in, STDIN_FILENO);
 }
 
-
 /******************** GET FLAGS, ARGS AND OUT REDIRECTION *********************/
 
-char **ft_flags(char **input, char **env, t_minishell *shell)
+char	**ft_flags(char **input, char **env, t_minishell *shell)
 {
+	int	j;
+	int	i;
+
+	j = -1;
+	i = 0;
 	if (shell->flags)
 	{
-		int j = -1;
 		while (shell->flags[++j])
 			free(shell->flags[j]);
 		free(shell->flags);
 	}
 	shell->flags = (char **)malloc(sizeof(char **) * 5);
-	(void)env;
+	(void) env;
 	shell->flags[0] = ft_strdup(input[0]);
-	int i = 0;
-	while(input[++i] && input[i][0] == '-' && ft_strlen(input[i]) >= 2)
+	while (input[++i] && input[i][0] == '-' && ft_strlen(input[i]) >= 2)
 		shell->flags[i] = ft_strdup(input[i]);
 	shell->flags[i] = NULL;
-	if(input[i] && ft_isalnum(input[i][0]))
+	if (input[i] && ft_isalnum(input[i][0]))
 	{
 		ft_args(input + i, shell);
 		i++;
@@ -113,5 +114,5 @@ char **ft_flags(char **input, char **env, t_minishell *shell)
 		ft_redirect(input + i + 1, shell);
 	if (input[i] && ft_strcmp(input[i], ">>"))
 		ft_append(input + i + 1, shell);
-	return shell->flags;
+	return (shell->flags);
 }

@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/16 14:54:04 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/18 12:16:22 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 /***************************** CHECK EVEN QUOTES ******************************/
 
-static int ft_quote(char *buf)
+static int	ft_quote(char *buf)
 {
-	int i = -1;
-	int count_double = 0;
-	int count_simple = 0;
+	int	i;
+	int	count_double;
+	int	count_simple;
 
+	i = -1;
+	count_double = 0;
+	count_simple = 0;
 	while (buf[++i])
 	{
 		if (buf[i] == '\"')
@@ -39,9 +42,11 @@ static int ft_quote(char *buf)
 
 /********************************* CHECK "?$" *********************************/
 
-static int ft_status(char *buf)
+static int	ft_status(char *buf)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (buf[i] == ' ' || buf[i] == '\t')
 		i++;
 	if (ft_strcmp(buf + i, "$?"))
@@ -54,15 +59,17 @@ static int ft_status(char *buf)
 
 /************************ REPLACE ENVIRONMENT VARIABLE ************************/
 
-static char *ft_replace(char *buf, char **env, int index)
+static char	*ft_replace(char *buf, char **env, int index)
 {
-	int i = 0;
-	int j = 0;
-	char var[256];
-	char *buf2;
-	char *tmp2;
-	char *tmp;
+	int		i;
+	int		j;
+	char	var[256];
+	char	*buf2;
+	char	*tmp2;
+	char	*tmp;
 
+	i = 0;
+	j = 0;
 	while (ft_isalnum(buf[++index]))
 		var[i++] = buf[index];
 	var[i] = 0;
@@ -91,12 +98,14 @@ static char *ft_replace(char *buf, char **env, int index)
 
 /******************* CHECK ENVIRONEMENT VARIABLE EXISTENCE ********************/
 
-static char *ft_dollar(char *buf, char **env)
+static char	*ft_dollar(char *buf, char **env)
 {
-	int i = -1;
-	int quote = 0;
-	char *buf2;
+	int		i;
+	int		quote;
+	char	*buf2;
 
+	i = -1;
+	quote = 0;
 	while (buf[++i])
 	{
 		if (buf[i] == '\'')
@@ -112,11 +121,10 @@ static char *ft_dollar(char *buf, char **env)
 
 /*************************** BASIC PARSING FUNCTION ***************************/
 
-void ft_parse(char *buf, t_minishell *shell)
+void	ft_parse(char *buf, t_minishell *shell)
 {
-	char *buf2;
+	char	*buf2;
 
-	//printf("PARSE\n");
 	if (!ft_quote(buf))
 		return ;
 	if (ft_status(buf))

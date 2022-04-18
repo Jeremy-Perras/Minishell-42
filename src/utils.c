@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:24:15 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/16 14:59:21 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/18 12:28:35 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_strlen(s1) != ft_strlen(s2))
@@ -26,7 +26,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (1);
 }
 
-char *quote_ignore(char *input)
+char	*quote_ignore(char *input)
 {
 	if (input[0] == '\"' && input[ft_strlen(input) - 1] == '\"')
 	{
@@ -38,5 +38,5 @@ char *quote_ignore(char *input)
 		input[ft_strlen(input) - 1] = '\0';
 		return (input + 1);
 	}
-	return input;
+	return (input);
 }

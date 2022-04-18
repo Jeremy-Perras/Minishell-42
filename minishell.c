@@ -6,13 +6,13 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/17 16:06:31 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/18 14:25:40 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-static void ft_init(t_minishell **shell, char **env)
+static void	ft_init(t_minishell **shell, char **env)
 {
 	*shell = (t_minishell *)malloc(sizeof(t_minishell));
 	(*shell)->env = env;
@@ -24,10 +24,10 @@ static void ft_init(t_minishell **shell, char **env)
 	(*shell)->fd_out = 0;
 }
 
-static void ft_free_shell(t_minishell *shell)
+static void	ft_free_shell(t_minishell *shell)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (shell->path[++i])
@@ -41,44 +41,27 @@ static void ft_free_shell(t_minishell *shell)
 
 void	ft_prompt(char **env)
 {
-	char	*buf;
-	t_minishell *shell;
-	
+	char		*buf;
+	t_minishell	*shell;
+
 	buf = readline("\e[96m$> \e[97m");
 	while (buf != NULL)
 	{
 		ft_init(&shell, env);
-		if(buf[0])
- 			add_history(buf);
+		if (buf[0])
+			add_history(buf);
 		ft_parse(buf, shell);
 		free(buf);
 		ft_free_shell(shell);
-    	buf = readline("\e[96m$> \e[97m");
+		buf = readline("\e[96m$> \e[97m");
 	}
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	(void)	argc;
-	(void)	argv;
-
+	(void) argc;
+	(void) argv;
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	ft_prompt(env);
 }
-
-
-
-
-
-
-/*
-1. minishell
-2. ft_parse
-3. pipex
-4. exceve || builtins
-
-__utils
-ft_split
-quote_ignore
-*/

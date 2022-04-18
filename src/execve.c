@@ -6,12 +6,11 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/16 20:06:27 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/18 14:26:24 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
 
 /******************************** EVECVE UTILS ********************************/
 
@@ -23,12 +22,12 @@ static char	**ft_path(char **env)
 	char	*tmp;
 
 	i = 0;
-	tmp = NULL;
 	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
 	if (!env[i])
 	{
-		path = ft_strdup("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin");
+		path = ft_strdup("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:");
+		path = ft_strjoin(path, "/usr/local/munki:/Library/Apple/usr/bin");
 	}
 	else
 		path = env[i] + 5;
@@ -66,8 +65,8 @@ static char	*ft_cmd(char *cmd, char **env)
 
 /*********************************** EXECVE ***********************************/
 
-void ft_exceve(char **input, char **env, t_minishell *shell)
+void	ft_exceve(char **input, char **env, t_minishell *shell)
 {
- 	ft_flags(input, env, shell);
+	ft_flags(input, env, shell);
 	execve(ft_cmd(input[0], env), shell->flags, env);
 }
