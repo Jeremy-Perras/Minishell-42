@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:25:32 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/19 11:33:40 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 17:49:15 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	ft_args(char **input, t_minishell *shell)
 
 /******************** GET FLAGS, ARGS AND OUT REDIRECTION *********************/
 
-char	**ft_flags(char **input, char **env, t_minishell *shell)
+char	**ft_flags(char **input, t_minishell *shell)
 {
 	int	j;
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 16:36:17 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 17:26:03 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,11 @@ void	ft_prompt()
 	//char 		**var;
 
 //	var = env;
-signal(SIGQUIT, sigint_handler);
-signal(SIGINT, sigint_handler);
-printf("B\n");
 	buf = readline("$> ");
 	while (1)
 	{
+		signal(SIGQUIT, sigint_handler);
+		signal(SIGINT, sigint_handler);
 	//	buf = readline("$> ");
 		ft_init(&shell);
 	//	buf = readline("$> ");
@@ -80,7 +79,7 @@ static char **ft_env(char **envp)
 	i = 0;
 	int j = -1;
 	while (envp[++j])
-		env[i++] = envp[j];
+		env[++i] = envp[j];
 	env[i] = 0;
 	return (env);
 

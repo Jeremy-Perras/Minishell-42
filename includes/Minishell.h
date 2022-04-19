@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 16:29:27 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 17:50:07 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	sigint_handler(int sign_num);
 /*
  * execve.c
  */
-void	ft_exceve(char **input, char **env, t_minishell *shell);
+void	ft_exceve(char **input , t_minishell *shell, char *cmd);
 /*
  * ft_parse.c
  */
@@ -86,11 +86,11 @@ char	**ft_split2(char *str, char *charset);
 char	**ft_infile(char **input, t_minishell *shell);
 void	ft_append(char **input, t_minishell *shell);
 void	ft_redirect(char **input, t_minishell *shell);
-char	**ft_flags(char **input, char **env, t_minishell *shell);
+char	**ft_flags(char **input, t_minishell *shell);
 /*
  * pipex.c
  */
-void	pipex(char *buf, t_minishell *shell, char **env);
+void	pipex(char *buf, t_minishell *shell);
 /*
  * utils.c
  */
