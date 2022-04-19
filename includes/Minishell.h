@@ -6,9 +6,11 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/18 12:02:32 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:40:39 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "../libft/libft.h"
@@ -36,7 +38,13 @@ typedef struct s_minishell
 	int		end[2];
 	char	**input;
 	char	**input2;
-}			t_minishell;
+}		t_minishell;
+
+typedef struct s_var
+{
+	char **var;
+}		t_var;
+
 /*
  * minishell.c
  */
@@ -50,6 +58,7 @@ void	ft_buildin_pwd(t_minishell *shell);
 void	ft_buildin_unset(t_minishell *shell);
 void	ft_buildin_exit(t_minishell *shell);
 void	ft_buildin_export(t_minishell *shell, char **env);
+void	ft_buildin_env(t_minishell *shell);
 /*
  * ----- src -----
  */

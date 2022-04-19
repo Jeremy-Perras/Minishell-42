@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:17:20 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/18 12:35:37 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:47:47 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "Minishell.h"
 
 void	ft_buildin_export(t_minishell *shell, char **env)
@@ -23,11 +24,11 @@ void	ft_buildin_export(t_minishell *shell, char **env)
 	i = 0;
 	while ((env)[i])
 	{
-		tab2[i] = (env)[i];
+		tab2[i] = ft_strdup(env[i]);
 		i++;
 	}
-	tab2[i] = shell->input2[1];
+	tab2[i] = ft_strdup(shell->input2[1]);
 	i++;
 	tab2[i] = 0;
-	env = tab2;
+	(shell)->env = tab2;
 }

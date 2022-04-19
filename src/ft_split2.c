@@ -6,119 +6,83 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:04:47 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/18 12:48:32 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/19 11:25:48 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-static void	ft_copy(char *copy, char *str, int j, int k);
-
-static void	ft_mal(char **tab2, char *c)
+static int	ft_is_separator(char *str, char *charset)
 {
-	int		j;
-	int		k;
-	char	*e;
-	int		l;
-
-	j = 0;
-	k = 0;
-	l = 0;
-	while (c[j] != '\0')
-	{
-		while (c[k] == 127 && c[k] != '\0')
-		k++;
-		j = k;
-		while (c[j] != 127 && c[j] != '\0')
-			j++;
-		e = malloc(sizeof(char) * (j + 1));
-		ft_copy(e, c, j, k);
-		if (e[0] != '\0')
-		{
-			*(tab2 + l) = e;
-			l++;
-		}
-		k = j;
-	}
-	*(tab2 + l) = 0;
+	while (*charset)
+		if (*str == *charset++)
+			return (1);
+	return (0);
 }
 
-static void	ft_copy(char *copy, char *str, int j, int k)
-{
-	int	l;
-
-	l = 0;
-	while (k != j)
-	{
-		copy[l] = str[k];
-		k++;
-		l++;
-	}
-	copy[l] = '\0';
-}
-
-static int	ft_len(char *copy)
+static int	ft_wordlen(char *str, char *charset)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (copy[i] != '\0')
-	{
-		if (copy[i] != 127)
-		{
-			j++;
-		}
+	while (str[i] && !ft_is_separator(str + i, charset))
 		i++;
-	}
-	return (j);
+	return (i);
 }
 
-static void	ft_comp(char *str, char *charset, int k)
+static int	ft_wordcount(char *str, char *charset)
 {
 	int	i;
-	int	j;
+	int	w;
 
-	i = 0;
-	j = 0;
-	if (charset[k] != '\0')
+	w = 0;
+	while (*str)
 	{
-		while (str[j] != '\0')
-		{
-			if (str[j] == charset[k])
-			{
-				str[j] = 127;
-			}
-			j++;
-		}
-		ft_comp(str, charset, k + 1);
+		while (*str && ft_is_separator(str, charset))
+			str++;
+		i = ft_wordlen(str, charset);
+		str += i;
+		if (i)
+			w++;
 	}
+	return (w);
+}
+
+static char	*ft_wordcpy(char *src, int n)
+{
+	char	*dest;
+
+	dest = malloc((n + 1) * sizeof(char));
+	if (dest == NULL)
+		return (NULL);
+	dest[n] = '\0';
+	while (n--)
+		dest[n] = src[n];
+	return (dest);
 }
 
 char	**ft_split2(char *str, char *charset)
 {
-	char	**tab2;
-	char	*copy;
+	char	**t;
+	int		size;
 	int		i;
-	int		j;
+	int		n;
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	copy = malloc((i + 1) * sizeof(char));
-	if (copy == NULL)
+	size = ft_wordcount(str, charset);
+	t = malloc((size + 1) * sizeof(char *));
+	if (t == NULL)
 		return (NULL);
-	i = 0;
-	while (str[i] != '\0')
+	i = -1;
+	while (++i < size)
 	{
-		copy[i] = str[i];
-		i++;
+		while (*str && ft_is_separator(str, charset))
+			str++;
+		n = ft_wordlen(str, charset);
+		t[i] = ft_wordcpy(str, n);
+		if (t[i] == NULL)
+			return (NULL);
+		str += n;
 	}
-	copy[i] = '\0';
-	ft_comp(copy, charset, 0);
-	j = ft_len(copy);
-	tab2 = malloc(sizeof(char *) * (j + 1));
-	ft_mal(tab2, copy);
-	return (tab2);
+	t[size] = 0;
+	return (t);
 }

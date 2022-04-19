@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/18 15:24:58 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/19 11:32:35 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static char	*ft_cmd(char *cmd, char **env)
 
 void	ft_exceve(char **input, char **env, t_minishell *shell)
 {
+//	printf("END0: %d   END1: %d   FD_IN: %d   FD_OUT: %d\n", shell->end[0], shell->end[1], shell->fd_in, shell->fd_out);
 	ft_flags(input, env, shell);
 	execve(ft_cmd(input[0], env), shell->flags, env);
 }

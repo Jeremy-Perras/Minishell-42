@@ -3,19 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jperras <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jperras <jperras@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 13:14:04 by jperras           #+#    #+#              #
-#    Updated: 2022/04/17 14:20:26 by jperras          ###   ########.fr        #
+#    Updated: 2022/04/19 12:39:33 by dhaliti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = minishell
 
 SRCS =  minishell.c buildin/cd.c buildin/echo.c \
-		buildin/exit.c buildin/pwd.c buildin/unset.c src/pipex.c src/signal.c src/execve.c \
+		buildin/exit.c buildin/pwd.c buildin/unset.c src/pipex.c src/signal.c src/execve.c buildin/env.c\
 		src/ft_parse.c src/ft_split2.c src/infile_outfile.c src/utils.c buildin/export.c
 
-FLAGS = -Wall -Werror -Wextra 
+FLAGS = -Wall -Werror -Wextra
 
 CC = gcc
 
