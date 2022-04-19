@@ -6,14 +6,14 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 13:12:45 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:30:04 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
 static void	ft_init(t_minishell **shell, char **var)
-{
+{	
 	*shell = (t_minishell *)malloc(sizeof(t_minishell));
 	(*shell)->env = var;
 	(*shell)->path = NULL;
@@ -22,7 +22,7 @@ static void	ft_init(t_minishell **shell, char **var)
 	(*shell)->input2 = NULL;
 	(*shell)->fd_in = 0;
 	(*shell)->fd_out = 0;
-	g_status = 0;
+
 
 }
 
@@ -50,6 +50,8 @@ void	ft_prompt(char **env)
 	t_minishell	*shell;
 	char 		**var;
 
+	signal(SIGQUIT, sigint_handler);	
+	signal(SIGINT, sigint_handler);
 	var = env;
 	buf = readline("$> ");
 	while (1)
@@ -73,7 +75,5 @@ int	main(int argc, char **argv, char **env)
 	(void) argv;
 
 	g_status = 0;
-	signal(SIGQUIT, sigint_handler);
-	signal(SIGINT, sigint_handler);
 	ft_prompt(env);
 }
