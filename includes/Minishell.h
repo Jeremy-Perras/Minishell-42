@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 14:27:33 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/19 16:29:27 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # include <term.h>
 # include <signal.h>
 
-int	g_status;
+char **env;
+int g_status;
 
 typedef struct s_minishell
 {
@@ -48,7 +49,7 @@ typedef struct s_var
 /*
  * minishell.c
  */
-void	ft_prompt(char **env);
+void	ft_prompt();
 /*
  * ----- buildin -----
  */
