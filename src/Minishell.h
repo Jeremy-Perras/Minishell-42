@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 17:50:07 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 19:52:20 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	sigint_handler(int sign_num);
  * execve.c
  */
 void	ft_exceve(char **input , t_minishell *shell, char *cmd);
+void	ft_child_process(t_minishell *shell, char *cmd);
+void	ft_parent_process(t_minishell *shell);
 /*
  * ft_parse.c
  */

@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:25:32 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/19 17:49:15 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 20:34:10 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@ static char	**ft_heredoc(char **input, t_minishell *shell)
 
 	limiter = input[1];
 	fd = open(".heredoc", O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	// if (fd)
+	// {
+	// 	printf("%d\n", fd);
+	// 	exit(0);
+	// }
 	heredoc = readline("heredoc>> ");
-	while (heredoc != NULL)
+	while (1)
 	{
 		if (ft_strcmp(heredoc, limiter))
 			break ;

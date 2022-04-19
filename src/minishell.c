@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 17:26:03 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 19:15:28 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	ft_init(t_minishell **shell)
 	(*shell)->input2 = NULL;
 	(*shell)->fd_in = 0;
 	(*shell)->fd_out = 0;
-
-
 }
 
 static void	ft_free_shell(t_minishell *shell)
@@ -48,21 +46,16 @@ void	ft_prompt()
 {
 	char		*buf;
 	t_minishell	*shell;
-	//char 		**var;
-
-//	var = env;
+	
+	signal(SIGKILL, sigint_handler);
+	signal(SIGINT, sigint_handler);
 	buf = readline("$> ");
 	while (1)
 	{
-		signal(SIGQUIT, sigint_handler);
-		signal(SIGINT, sigint_handler);
-	//	buf = readline("$> ");
 		ft_init(&shell);
-	//	buf = readline("$> ");
 		if (*buf)
 			add_history(buf);
 		ft_parse(buf, shell);
-	//	var = shell->env;
 		ft_free_shell(shell);
 		free(buf);
 		buf = readline("$> ");
@@ -82,28 +75,13 @@ static char **ft_env(char **envp)
 		env[++i] = envp[j];
 	env[i] = 0;
 	return (env);
-
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	(void) argc;
 	(void) argv;
-	//pid_t child;
 
 	env = ft_env(envp);
 	ft_prompt();
-	// while (g_status != 5)
-	// {
-	// 	// signal(SIGQUIT, sigint_handler);
-	// 	// signal(SIGINT, sigint_handler);
-	// 	child = fork();
-	// 	if (!child)
-	// 	else
-	// 	{
-	// 		pid_t ret = waitpid(child, NULL, 0);
-	// 		if (ret == 5)
-	// 			exit(0);
-	// 	}
-	// }
 }

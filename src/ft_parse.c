@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/19 17:50:16 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 19:27:21 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ void	ft_parse(char *buf, t_minishell *shell)
 	if (ft_status(buf))
 		return ;
 	buf2 = ft_dollar(buf, shell->env);
+	shell->fd_in = 0;
 	pipex(buf2, shell);
 }

@@ -6,30 +6,12 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 17:53:16 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 20:22:21 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-/*********************************** CHILD ************************************/
-
-static void	ft_child_process(t_minishell *shell, char *cmd)
-{
-	shell->input2 = ft_infile(shell->input2, shell);
-	close(shell->end[0]);
-	ft_exceve(shell->input2, shell, cmd);
-	exit(0);
-}
-
-/*********************************** PARENT ***********************************/
-
-static void	ft_parent_process(t_minishell *shell)
-{
-	close(shell->end[1]);
-	shell->fd_in = shell->end[0];
-	wait(NULL);
-}
 /*********************************** CLEAN ***********************************/
 
 static void	ft_clean(char *argv, t_minishell *shell)
@@ -45,20 +27,13 @@ static void	ft_clean(char *argv, t_minishell *shell)
 			free(shell->input[j]);
 		free(shell->input);
 	}
-	// if (shell->input2)
-	// {
-	// 	int k = -1;
-	// 	while (shell->input2[++k])
-	// 		free(shell->input2[k]);
-	// 	free(shell->input2);
-	// }
 	shell->input = ft_split2(argv, " \t");
 	shell->input2 = (char **)malloc(sizeof(char **) * 5);
 	while (shell->input[++i])
 		shell->input2[i] = quote_ignore(shell->input[i]);
 	shell->input2[i] = NULL;
 }
-/********************************** CHOOSE **********************************/
+/*********************************** FT_CMD ***********************************/
 
 static char	**ft_path(char **env)
 {
@@ -105,18 +80,19 @@ static char	*ft_cmd(char *cmd)
 		free(cmd2);
 		i++;
 	}
-	write(2, "command not found\n", 18);
+	printf("%s: Command not found\n", cmd);
 	free(env[0]);
 	env[0] = ft_strdup(ft_itoa(127));
-	return NULL;
+	return (NULL);
 }
 
-static char	*ft_choose(t_minishell *shell, int *flag)
-{
-	*flag = 1;
-	char *cmd;
-	int i = 0;
+/*********************************** CHOOSE ***********************************/
 
+static char	*ft_choose(t_minishell *shell)
+{
+	int i;
+
+	i = 0;
 	if (shell->input[i][0] == '<')
 		i += 2;
 	if (ft_strcmp(shell->input2[i], "cd"))
@@ -134,17 +110,8 @@ static char	*ft_choose(t_minishell *shell, int *flag)
 	else if (ft_strcmp(shell->input2[i], "env"))
 		ft_buildin_env(shell);
 	else
-	{
-		cmd = ft_cmd(shell->input2[i]);
-		printf("%s\n", env[0]);
-		if (cmd)
-		{
-			*flag = 0;
-			return (cmd);
-		}
-		free(cmd);
-	}
-	return NULL;
+		return (ft_cmd(shell->input2[i]));
+	return (NULL);
 }
 /*********************************** PIPEX ************************************/
 
@@ -152,17 +119,15 @@ void	pipex(char *buf, t_minishell *shell)
 {
 	pid_t	parent;
 	int		j;
-	int		flag = 0;
 	char	*cmd;
 
-	shell->fd_in = 0;
 	j = -1;
 	shell->path = ft_split(buf, '|');
 	while (shell->path[++j])
 	{
 		ft_clean(shell->path[j], shell);
-		cmd = ft_choose(shell, &flag);
-		if (flag == 0)
+		cmd = ft_choose(shell);
+		if (cmd)
 		{
 			pipe(shell->end);
 			parent = fork();
@@ -176,4 +141,5 @@ void	pipex(char *buf, t_minishell *shell)
 				ft_parent_process(shell);
 		}
 	}
+	free (cmd);
 }
