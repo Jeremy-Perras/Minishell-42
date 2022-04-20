@@ -3,34 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:25:49 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 14:45:30 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 10:08:59 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "Minishell.h"
 
 void	sigint_handler(int sign_num)
 {
-	if (sign_num == SIGINT && g_status == 130)
+	if (sign_num == SIGINT)
 	{
-		write(1,"\b\b  ", 4);
-		write(1,"\n", 1);
-		write(1,"$> ", 3);
-		g_status = 128 + sign_num;
+		write(STDERR_FILENO, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		free(env[0]);
+		env[0] = ft_strdup(ft_itoa(130));
 	}
-	else
-	{
-		write(1,"\b\b  ", 4);
-		write(1,"\n", 1);
-		write(1,"$> ", 3);
-		g_status =0;
-	}
-
-
-	/*if (sign_num == SIGQUIT)
-	{
-		g_status = 128 + sign_num;
-	}*/
 }

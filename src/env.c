@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 12:37:11 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/19 12:40:29 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/19 19:15:54 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void ft_buildin_env(t_minishell *shell)
 {
-	int i = -1;
+	int i = 0;
 
 	while (shell->env[++i])
 		printf("%s\n", shell->env[i]);

@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 14:27:33 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/19 19:52:20 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # include <term.h>
 # include <signal.h>
 
-int	g_status;
+char **env;
+int g_status;
 
 typedef struct s_minishell
 {
@@ -48,7 +49,7 @@ typedef struct s_var
 /*
  * minishell.c
  */
-void	ft_prompt(char **env);
+void	ft_prompt();
 /*
  * ----- buildin -----
  */
@@ -70,7 +71,9 @@ void	sigint_handler(int sign_num);
 /*
  * execve.c
  */
-void	ft_exceve(char **input, char **env, t_minishell *shell);
+void	ft_exceve(char **input , t_minishell *shell, char *cmd);
+void	ft_child_process(t_minishell *shell, char *cmd);
+void	ft_parent_process(t_minishell *shell);
 /*
  * ft_parse.c
  */
@@ -85,11 +88,11 @@ char	**ft_split2(char *str, char *charset);
 char	**ft_infile(char **input, t_minishell *shell);
 void	ft_append(char **input, t_minishell *shell);
 void	ft_redirect(char **input, t_minishell *shell);
-char	**ft_flags(char **input, char **env, t_minishell *shell);
+char	**ft_flags(char **input, t_minishell *shell);
 /*
  * pipex.c
  */
-void	pipex(char *buf, t_minishell *shell, char **env);
+void	pipex(char *buf, t_minishell *shell);
 /*
  * utils.c
  */
