@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 10:11:39 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 10:15:36 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void ft_cat_redirect(char **input, t_minishell *shell)
 	}
 	if (ft_strcmp(input[0], ">>"))
 	{
-		shell->fd_out = open(input[1], O_APPEND | O_CREAT, 0664);
+		shell->fd_out = open(input[1],  O_WRONLY | O_APPEND | O_CREAT, 0664);
 		dup2(shell->fd_out, STDOUT_FILENO);
 	}
 }
