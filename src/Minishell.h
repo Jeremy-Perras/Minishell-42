@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 12:12:47 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 12:37:08 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_append(char **input, t_minishell *shell);
 void	ft_redirect(char **input, t_minishell *shell);
 char	**ft_flags(char **input, t_minishell *shell);
 void 	ft_redirection(char **input, t_minishell *shell);
+void	ft_builtin_redirect(t_minishell *shell);
 /*
  * pipex.c
  */
