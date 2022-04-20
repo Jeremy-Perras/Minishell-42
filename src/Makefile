@@ -6,7 +6,7 @@
 #    By: jperras <jperras@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 13:14:04 by jperras           #+#    #+#              #
-#    Updated: 2022/04/20 12:37:31 by dhaliti          ###   ########.fr        #
+#    Updated: 2022/04/20 16:52:27 by jperras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 BLU			= \033[0;34m
@@ -17,7 +17,7 @@ END			= \e[0m
 
 SRCS =  minishell.c cd.c echo.c \
 		exit.c pwd.c unset.c pipex.c signal.c execve.c env.c\
-		ft_parse.c ft_split2.c infile_outfile.c utils.c export.c cat.c redirect.c builtin_redirection.c
+		ft_parse.c ft_split2.c infile_outfile.c utils.c export.c cat.c redirect.c
 NAME		= minishell
 OBJS_DIR	= objs/
 OBJS		= $(SRCS:.c=.o)

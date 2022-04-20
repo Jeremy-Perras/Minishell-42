@@ -6,13 +6,13 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:05:34 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 16:18:50 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:51:44 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-static void	t_print_echo(char **args, int fd, int flag)
+static void	ft_print_echo(char **args, int fd, int flag)
 {
 	int	i;
 	int	j;

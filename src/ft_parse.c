@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 15:11:05 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:50:38 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,12 @@ static int	ft_status(char *buf)
 static char	*ft_replace(char *buf, char **env, int index)
 {
 	int		i;
-	int		j;
 	char	var[256];
 	char	*buf2;
 	char	*tmp2;
 	char	*tmp;
 
 	i = 0;
-	j = 0;
 	while (ft_isalnum(buf[++index]))
 		var[i++] = buf[index];
 	var[i] = 0;
@@ -80,11 +78,12 @@ static char	*ft_replace(char *buf, char **env, int index)
 		i++;
 	buf[i] = 0;
 	tmp = ft_strdup(buf);
-	while (env[++j])
+	i = 0;
+	while (env[++i])
 	{
-		if (ft_strncmp(env[j], var, ft_strlen(var)) == 0)
+		if (ft_strncmp(env[i], var, ft_strlen(var)) == 0)
 		{
-			tmp2 = ft_strjoin(tmp, env[j] + ft_strlen(var) + 1);
+			tmp2 = ft_strjoin(tmp, env[i] + ft_strlen(var) + 1);
 			buf2 = ft_strjoin(tmp2, &buf[index]);
 			free(tmp);
 			free(tmp2);
