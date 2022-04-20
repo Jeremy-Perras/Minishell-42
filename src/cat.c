@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 10:42:30 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 15:13:51 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:14:13 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int ft_cat_redirect(char **input, t_minishell *shell)
 		if (shell->fd_out < 0)
 		{
 			printf("%s: file could not be found or created\n", input[1]);
-			return (0);
+			exit(0);
 		}
 		dup2(shell->fd_out, STDOUT_FILENO);
 	}
@@ -32,7 +32,7 @@ static int ft_cat_redirect(char **input, t_minishell *shell)
 		if (shell->fd_out < 0)
 		{
 			printf("%s: file could not be found or created\n", input[1]);
-			return (0);
+			exit(0);
 		}
 		dup2(shell->fd_out, STDOUT_FILENO);
 	}
@@ -45,7 +45,7 @@ static void ft_execve_cat(char **input, t_minishell *shell, char *cmd)
 	pid_t	pid;
 
 	i = 0;
-	while(input[i] && input[i][0] != '>')
+	while (input[i] && input[i][0] != '>')
 	{
 		pid = fork();
 		if (!pid)
@@ -79,10 +79,7 @@ void ft_cat(char **input, t_minishell *shell, char *cmd)
 	while (input[++j])
 	{
 		if (ft_strcmp(input[j], ">") || ft_strcmp(input[j], ">>"))
-		{
-			if (!ft_cat_redirect(input + j, shell))
-				return ;
-		}
+			ft_cat_redirect(input + j, shell);
 	}
 	ft_execve_cat(input + i, shell, cmd);
 }
