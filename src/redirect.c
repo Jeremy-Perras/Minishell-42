@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 11:59:26 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 12:16:59 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:06:22 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ char	**ft_infile(char **input, t_minishell *shell)
 {
 	if (ft_strcmp(input[0], "<"))
 	{
-		printf("%s\n", input[1]);
 		shell->fd_in = open(input[1], O_RDONLY);
+		if (shell->fd_in < 0)
+		{
+			printf("%s: No such file or directory\n", input[1]);
+			exit(0);
+		}
 		dup2(shell->fd_in, STDIN_FILENO);
 		return (input + 2);
 	}
