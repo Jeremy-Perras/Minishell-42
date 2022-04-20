@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 11:48:35 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 14:11:16 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_exceve(char **input, t_minishell *shell, char *cmd)
 {
 	if (ft_strcmp(input[0], "cat"))
 		ft_cat(input, shell, cmd);
-	else if (ft_strcmp(input[0], "echo") && input[1])
+	else if (ft_strcmp(input[0], "echo"))
 		ft_buildin_echo(shell);
 	else
 	{

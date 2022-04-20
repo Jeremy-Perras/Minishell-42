@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   s_format.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 12:32:24 by jperras           #+#    #+#             */
-/*   Updated: 2022/03/12 12:32:25 by jperras          ###   ########.fr       */
+/*   Created: 2022/02/26 21:47:07 by dhaliti           #+#    #+#             */
+/*   Updated: 2022/03/02 14:30:51 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_lstsize(t_list *lst)
+void	s_format(t_printf *tab)
 {
-	int	size;
+	char	*str;
 
-	size = 0;
-	while (lst)
-	{
-		size++;
-		lst = lst->next;
-	}
-	return (size);
+	str = va_arg(tab->args, char *);
+	if (!str)
+		tab->length += write(1, "(null)", 6);
+	else
+		tab->length += write(1, str, ft_strlen(str));
 }

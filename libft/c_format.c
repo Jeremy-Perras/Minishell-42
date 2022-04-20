@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   c_format.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 12:29:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/03/12 12:29:02 by jperras          ###   ########.fr       */
+/*   Created: 2022/02/26 21:41:11 by dhaliti           #+#    #+#             */
+/*   Updated: 2022/02/28 16:41:52 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	c_format(t_printf *tab, int index)
 {
-	if (lst && new)
-		new->next = *lst;
-	if (new)
-		*lst = new;
+	char	c;
+
+	if (index)
+		c = '%';
+	else
+		c = va_arg(tab->args, int);
+	tab->length += write(1, &c, 1);
 }

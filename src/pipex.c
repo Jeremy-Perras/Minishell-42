@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 20:22:21 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 14:37:15 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ static char	*ft_choose(t_minishell *shell)
 		i += 2;
 	if (ft_strcmp(shell->input2[i], "cd"))
 		ft_buildin_cd(shell);
-	else if (ft_strcmp(shell->input2[i], "echo"))
-		ft_buildin_echo(shell);
+	// else if (ft_strcmp(shell->input2[i], "echo"))
+	// 	ft_buildin_echo(shell);
 	else if (ft_strcmp(shell->input2[i], "exit"))
 		ft_buildin_exit(shell);
 	else if (ft_strcmp(shell->input2[i], "export"))

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 08:23:31 by jperras           #+#    #+#             */
-/*   Updated: 2022/02/25 12:50:12 by jperras          ###   ########.fr       */
+/*   Created: 2021/12/21 00:09:31 by dhaliti           #+#    #+#             */
+/*   Updated: 2022/02/22 12:04:12 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static char	*ft_array(char *str, unsigned int number, long int length)

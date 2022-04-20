@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 10:34:56 by jperras           #+#    #+#             */
-/*   Updated: 2022/02/25 13:34:59 by jperras          ###   ########.fr       */
+/*   Created: 2021/12/21 00:01:56 by dhaliti           #+#    #+#             */
+/*   Updated: 2022/03/16 11:18:27 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static long	ft_atoi_atoi(char *str, int minus)
@@ -40,7 +41,9 @@ int	ft_atoi(const char *str)
 	i = 0;
 	s = (char *)str;
 	sign = 1;
-	while ((str[i] <= 13 && str[i] >= 9) || str[i] == 32)
+	while (((s[i] == '\t') || (s[i] == '\n') || (s[i] == '\v')
+			|| (s[i] == '\f') || (s[i] == '\r') || (s[i] == '\x1b')
+			|| (s[i] == ' ')) && (s[i] != '\e'))
 		i++;
 	if ((str[i] == '-') || (str[i] == '+'))
 	{
