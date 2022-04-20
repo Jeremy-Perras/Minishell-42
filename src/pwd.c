@@ -6,17 +6,16 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:34:45 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 12:43:51 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 13:55:10 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-static void ft_builtin_redirect2(t_minishell *shell, char *tmp)
+static void	ft_builtin_redirect2(t_minishell *shell, char *tmp)
 {
 	if (ft_strcmp(shell->input[1], ">"))
 	{
-		printf("%s\n", "A");
 		shell->fd_out = open(shell->input2[2], \
 			O_WRONLY | O_TRUNC | O_CREAT, 0664);
 		if (shell->fd_out < 0)
@@ -45,17 +44,19 @@ void	ft_buildin_pwd(t_minishell *shell)
 
 	if (getcwd(tmp, sizeof(tmp)) == NULL)
 	{
-		g_status = 1;
+		printf("Pwd error");
+		free(env[0]);
+		env[0] = ft_strdup(ft_itoa(1));
 		return ;
 	}
 	if (shell->input2[1])
 	{
-		if (ft_strcmp(shell->input2[1], ">") || ft_strcmp(shell->input2[1], ">>"))
+		if (ft_strcmp(shell->input2[1], ">")
+			|| ft_strcmp(shell->input2[1], ">>"))
 			ft_builtin_redirect2(shell, tmp);
 	}
 	else
-	{
 		printf("%s\n", tmp);
-		g_status = 0;
-	}
+	free(env[0]);
+	env[0] = ft_strdup(ft_itoa(0));
 }
