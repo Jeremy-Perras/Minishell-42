@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:17:14 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 16:46:33 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 17:55:44 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_buildin_unset(t_minishell *shell)
 	while (g_env[i] && ft_strncmp(g_env[i], shell->input2[1],
 			ft_strlen(shell->input2[1])))
 		i++;
+	i--;
 	if (!g_env[i])
 	{
 		printf("unset: %s\nInvalid parameter name\n", shell->input2[1]);

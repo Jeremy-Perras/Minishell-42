@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 16:46:50 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 18:26:46 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static char	*ft_cmd(char *cmd)
 	char	*cmd2;
 	int		i;
 
+	if (cmd[0] == '/')
+		return (cmd);
 	i = 0;
 	mypath = ft_path(g_env);
 	while (mypath[i])
@@ -92,6 +94,8 @@ static char	*ft_choose(t_minishell *shell)
 {
 	int	i;
 
+	if (ft_check_files(shell))
+		return (NULL);
 	i = 0;
 	if (shell->input[i][0] == '<')
 		i += 2;
@@ -138,6 +142,6 @@ void	pipex(char *buf, t_minishell *shell)
 			else
 				ft_parent_process(shell);
 		}
+		free (cmd);
 	}
-	free (cmd);
 }

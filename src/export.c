@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:17:20 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 16:22:57 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 17:54:19 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ void	ft_buildin_export(t_minishell *shell)
 	int		i;
 	char	**tab2;
 
+	if (!(ft_strchr(shell->input2[1], '=')))
+	{
+		printf("export: %s not valid in this context\n", shell->input2[1]);
+		return ;
+	}
 	i = 0;
 	while ((g_env)[i])
 		i++;

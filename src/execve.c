@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 16:19:21 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 18:29:27 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ void	ft_parent_process(t_minishell *shell)
 
 void	ft_exceve(char **input, t_minishell *shell, char *cmd)
 {
-	if (ft_strcmp(input[0], "cat"))
+	if (ft_strcmp(input[0], "cat") && input[2])
 		ft_cat(input, shell, cmd);
 	else if (ft_strcmp(input[0], "echo"))
 		ft_buildin_echo(shell);
 	else
 	{
 		ft_flags(input, shell);
-		execve(cmd, shell->flags, g_env);
+		if (execve(cmd, shell->flags, g_env) == -1)
+			printf("%s: No such file or directory\n", cmd);
 	}
 }

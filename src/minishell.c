@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 16:44:25 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 19:24:29 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_prompt(void)
 
 	signal(SIGKILL, sigint_handler);
 	signal(SIGINT, sigint_handler);
-	buf = readline("$> ");
+	buf = readline("\033[0;36mMinishell $> \e[0m");
 	while (buf != NULL)
 	{
 		ft_init(&shell);
@@ -58,7 +58,7 @@ void	ft_prompt(void)
 		ft_parse(buf, shell);
 		ft_free_shell(shell);
 		free(buf);
-		buf = readline("$> ");
+		buf = readline("\033[0;36mMinishell $> \e[0m");
 	}
 }
 
