@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/19 19:15:28 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 10:12:29 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	ft_prompt()
 {
 	char		*buf;
 	t_minishell	*shell;
-	
+
 	signal(SIGKILL, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	buf = readline("$> ");
-	while (1)
+	while (buf != NULL)
 	{
 		ft_init(&shell);
 		if (*buf)
