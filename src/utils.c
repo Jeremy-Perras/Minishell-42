@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:24:15 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 16:54:11 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 17:08:08 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,31 @@ char	*quote_ignore(char *input)
 		return (input + 1);
 	}
 	return (input);
+}
+
+char	*ft_replace2(char *var, int index, char **env, char *buf)
+{
+	char	*tmp2;
+	char	*tmp;
+	char	*buf2;
+	int		i;
+
+	tmp = ft_strdup(buf);
+	i = 0;
+	while (env[++i])
+	{
+		if (ft_strncmp(env[i], var, ft_strlen(var)) == 0)
+		{
+			tmp2 = ft_strjoin(tmp, env[i] + ft_strlen(var) + 1);
+			buf2 = ft_strjoin(tmp2, &buf[index]);
+			free(tmp);
+			free(tmp2);
+			return (buf2);
+		}
+	}
+	tmp2 = ft_strjoin(tmp, "");
+	buf2 = ft_strjoin(tmp2, &buf[index]);
+	free(tmp);
+	free(tmp2);
+	return (buf2);
 }
