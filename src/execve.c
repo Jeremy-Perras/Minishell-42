@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 14:11:16 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:13:31 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	ft_exceve(char **input, t_minishell *shell, char *cmd)
 	else
 	{
 		ft_flags(input, shell);
-		execve(cmd, shell->flags, env);
+		execve(cmd, shell->flags, g_env);
 	}
 }

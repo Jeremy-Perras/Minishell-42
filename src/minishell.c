@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 10:12:29 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:27:35 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_init(t_minishell **shell)
 {
 	*shell = (t_minishell *)malloc(sizeof(t_minishell));
-	(*shell)->env = env;
+	(*shell)->env = g_env;
 	(*shell)->path = NULL;
 	(*shell)->flags = NULL;
 	(*shell)->input = NULL;
@@ -67,14 +67,14 @@ static char **ft_env(char **envp)
 	int i = -1;
 	while (envp[++i])
 		i++;
-	env = (char **)malloc(sizeof(char **) * (i + 1));
-	env[0] = ft_strdup("0");
+	g_env = (char **)malloc(sizeof(char **) * (i + 1));
+	g_env[0] = ft_strdup("0");
 	i = 0;
 	int j = -1;
 	while (envp[++j])
-		env[++i] = envp[j];
-	env[i] = 0;
-	return (env);
+		g_env[++i] = ft_strdup(envp[j]);
+	g_env[i] = 0;
+	return (g_env);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -82,6 +82,6 @@ int	main(int argc, char **argv, char **envp)
 	(void) argc;
 	(void) argv;
 
-	env = ft_env(envp);
+	g_env = ft_env(envp);
 	ft_prompt();
 }

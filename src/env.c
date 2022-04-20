@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 12:37:11 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 13:37:44 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:34:49 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ static void	ft_buildin_env3(t_minishell *shell)
 	shell->fd_out = open(shell->input2[2], \
 		O_WRONLY | O_APPEND | O_CREAT, 0664);
 	if (shell->fd_out < 0)
-	{	
-		free(env[0]);
-		env[0] = ft_strdup(ft_itoa(1));
+	{
+		free(g_env[0]);
+		g_env[0] = ft_strdup(ft_itoa(1));
 		printf("%s: No such file or directory\n", shell->input2[2]);
 		return ;
 	}
-	while (shell->env[++i])
+	while (g_env[++i])
 	{
-		ft_putstr_fd(shell->env[i], shell->fd_out);
+		ft_putstr_fd(g_env[i], shell->fd_out);
 		ft_putstr_fd("\n", shell->fd_out);
 	}
 }
@@ -44,14 +44,14 @@ static void	ft_buildin_env2(t_minishell *shell)
 			O_WRONLY | O_TRUNC | O_CREAT, 0664);
 		if (shell->fd_out < 0)
 		{
-			free(env[0]);
-			env[0] = ft_strdup(ft_itoa(1));
+			free(g_env[0]);
+			g_env[0] = ft_strdup(ft_itoa(1));
 			printf("%s: No such file or directory\n", shell->input2[2]);
 			return ;
 		}
-		while (shell->env[++i])
+		while (g_env[++i])
 		{
-			ft_putstr_fd(shell->env[i], shell->fd_out);
+			ft_putstr_fd(g_env[i], shell->fd_out);
 			ft_putstr_fd("\n", shell->fd_out);
 		}
 	}
@@ -72,9 +72,9 @@ void	ft_buildin_env(t_minishell *shell)
 	}
 	else
 	{
-		while (shell->env[++i])
-			printf("%s\n", shell->env[i]);
+		while (g_env[++i])
+			printf("%s\n", g_env[i]);
 	}
-	free(env[0]);
-	env[0] = ft_strdup(ft_itoa(0));
+	free(g_env[0]);
+	g_env[0] = ft_strdup(ft_itoa(0));
 }

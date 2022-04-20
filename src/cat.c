@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 10:42:30 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 11:50:03 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:13:51 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void ft_execve_cat(char **input, t_minishell *shell, char *cmd)
 				exit(0);
 			}
 			dup2(shell->fd_in, STDIN_FILENO);
-			execve(cmd, shell->flags, env);
+			execve(cmd, shell->flags, g_env);
 		}
 		else
 			wait(NULL);

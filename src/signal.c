@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:25:49 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 10:08:59 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:15:45 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sigint_handler(int sign_num)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-		free(env[0]);
-		env[0] = ft_strdup(ft_itoa(130));
+		free(g_env[0]);
+		g_env[0] = ft_strdup(ft_itoa(130));
 	}
 }

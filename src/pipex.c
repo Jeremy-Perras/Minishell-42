@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 14:37:15 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:28:00 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	*ft_cmd(char *cmd)
 	int		i;
 
 	i = 0;
-	mypath = ft_path(env);
+	mypath = ft_path(g_env);
 	while (mypath[i])
 	{
 		cmd2 = ft_strjoin(mypath[i], cmd);
@@ -81,8 +81,8 @@ static char	*ft_cmd(char *cmd)
 		i++;
 	}
 	printf("%s: Command not found\n", cmd);
-	free(env[0]);
-	env[0] = ft_strdup(ft_itoa(127));
+	free(g_env[0]);
+	g_env[0] = ft_strdup(ft_itoa(127));
 	return (NULL);
 }
 
@@ -97,12 +97,10 @@ static char	*ft_choose(t_minishell *shell)
 		i += 2;
 	if (ft_strcmp(shell->input2[i], "cd"))
 		ft_buildin_cd(shell);
-	// else if (ft_strcmp(shell->input2[i], "echo"))
-	// 	ft_buildin_echo(shell);
 	else if (ft_strcmp(shell->input2[i], "exit"))
 		ft_buildin_exit(shell);
 	else if (ft_strcmp(shell->input2[i], "export"))
-		ft_buildin_export(shell, env);
+		ft_buildin_export(shell);
 	else if (ft_strcmp(shell->input2[i], "pwd"))
 		ft_buildin_pwd(shell);
 	else if (ft_strcmp(shell->input2[i], "unset"))

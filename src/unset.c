@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperras <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:17:14 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 12:55:23 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:39:50 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@ void	ft_buildin_unset(t_minishell *shell)
 	int	i;
 
 	i = 0;
-	while (ft_strncmp((shell->env)[i], shell->input2[1],
-		ft_strlen(shell->input2[1])) && shell->env[i])
+	while (g_env[i] && ft_strncmp(g_env[i], shell->input2[1],
+		ft_strlen(shell->input2[1])))
 		i++;
-	if (!(shell->env[i]))
+	if (!g_env[i])
 	{
-		free(env[0]);
-		env[0] = ft_strdup(ft_itoa(1));
+		printf("unset: %s\nInvalid parameter name\n", shell->input2[1]);
+		free(g_env[0]);
+		g_env[0] = ft_strdup(ft_itoa(1));
 	}
 	else
 	{
-		while ((shell->env)[i])
+		while (g_env[i])
 		{
-			(shell->env)[i] = (shell->env)[i + 1];
+			(g_env)[i] = (g_env)[i + 1];
 			i++;
 		}
-		free(env[0]);
-		env[0] = ft_strdup(ft_itoa(0));
+		free(g_env[0]);
+		g_env[0] = ft_strdup(ft_itoa(0));
 	}
-}	
+}

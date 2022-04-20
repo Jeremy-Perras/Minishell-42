@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 12:37:08 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:28:12 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 # include <term.h>
 # include <signal.h>
 
-char **env;
-int g_status;
+char **g_env;
 
 typedef struct s_minishell
 {
@@ -58,7 +57,7 @@ void	ft_buildin_echo(t_minishell *shell);
 void	ft_buildin_pwd(t_minishell *shell);
 void	ft_buildin_unset(t_minishell *shell);
 void	ft_buildin_exit(t_minishell *shell);
-void	ft_buildin_export(t_minishell *shell, char **env);
+void	ft_buildin_export(t_minishell *shell);
 void	ft_buildin_env(t_minishell *shell);
 /*
  * ----- src -----

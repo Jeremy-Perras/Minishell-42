@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/19 19:27:21 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:11:05 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int	ft_quote(char *buf)
 		|| (count_simple && (count_simple % 2)) != 0)
 	{
 		printf("\t%d\n", count_double);
-		g_status = 0;
 		printf("Quotes must be closed\n");
 		return (0);
 	}
@@ -52,9 +51,9 @@ static int	ft_status(char *buf)
 		i++;
 	if (buf[i] == '$' && buf[i + 1] == '?')
 	{
-		printf("%s\n", env[0]);
-		free(env[0]);
-		env[0] = ft_strdup(ft_itoa(0));
+		printf("%s\n", g_env[0]);
+		free(g_env[0]);
+		g_env[0] = ft_strdup(ft_itoa(0));
 		return (1);
 	}
 	return (0);
