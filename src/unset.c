@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:17:14 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 15:39:50 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:46:33 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_buildin_unset(t_minishell *shell)
 
 	i = 0;
 	while (g_env[i] && ft_strncmp(g_env[i], shell->input2[1],
-		ft_strlen(shell->input2[1])))
+			ft_strlen(shell->input2[1])))
 		i++;
 	if (!g_env[i])
 	{

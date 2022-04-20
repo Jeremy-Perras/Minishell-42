@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 15:28:00 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:46:50 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	*ft_cmd(char *cmd)
 
 static char	*ft_choose(t_minishell *shell)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (shell->input[i][0] == '<')

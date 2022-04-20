@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 16:26:11 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:44:25 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	(void) argc;
 	(void) argv;
-
 	g_env = ft_env(envp);
 	ft_prompt();
 }
