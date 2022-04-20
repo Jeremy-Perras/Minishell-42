@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 01:42:29 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/13 17:52:30 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:07:09 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void			s_format(t_printf *tab);
 void			p_format(t_printf *tab);
 void			u_format(t_printf *tab);
 void			x_format(t_printf *tab, int index);
-//int				get_next_line (int fd, char **line);
-char			*get_next_line (int fd);
+char			*get_next_line(int fd);
 
 #endif
