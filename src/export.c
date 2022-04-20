@@ -6,27 +6,16 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:17:20 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 15:42:45 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:22:57 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-void	ft_buildin_export(t_minishell *shell)
+void	ft_buildin_export2(t_minishell *shell, char **tab2)
 {
-	int		i;
-	char	**tab2;
+	int	i;
 
-	i = 0;
-	while ((g_env)[i])
-		i++;
-	tab2 = malloc(sizeof(char *) * (i + 2));
-	if (tab2 == NULL)
-	{
-		printf("Malloc fail export");
-		free(g_env[0]);
-		g_env[0] = ft_strdup(ft_itoa(0));
-	}
 	i = 0;
 	while ((g_env)[i])
 	{
@@ -43,4 +32,22 @@ void	ft_buildin_export(t_minishell *shell)
 	g_env = tab2;
 	free(g_env[0]);
 	g_env[0] = ft_strdup(ft_itoa(0));
+}
+
+void	ft_buildin_export(t_minishell *shell)
+{
+	int		i;
+	char	**tab2;
+
+	i = 0;
+	while ((g_env)[i])
+		i++;
+	tab2 = malloc(sizeof(char *) * (i + 2));
+	if (tab2 == NULL)
+	{
+		printf("Malloc fail export");
+		free(g_env[0]);
+		g_env[0] = ft_strdup(ft_itoa(0));
+	}
+	ft_buildin_export2(shell, tab2);
 }

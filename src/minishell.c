@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 15:27:35 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:26:11 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	ft_free_shell(t_minishell *shell)
 	free(shell);
 }
 
-void	ft_prompt()
+void	ft_prompt(void)
 {
 	char		*buf;
 	t_minishell	*shell;
@@ -62,15 +62,18 @@ void	ft_prompt()
 	}
 }
 
-static char **ft_env(char **envp)
+static char	**ft_env(char **envp)
 {
-	int i = -1;
+	int	i;
+	int	j;
+
+	i = -1;
 	while (envp[++i])
 		i++;
 	g_env = (char **)malloc(sizeof(char **) * (i + 1));
 	g_env[0] = ft_strdup("0");
 	i = 0;
-	int j = -1;
+	j = -1;
 	while (envp[++j])
 		g_env[++i] = ft_strdup(envp[j]);
 	g_env[i] = 0;

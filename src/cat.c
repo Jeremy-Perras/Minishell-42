@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 10:42:30 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 16:14:13 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:16:48 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /************************************ CAT *************************************/
 
-static int ft_cat_redirect(char **input, t_minishell *shell)
+static int	ft_cat_redirect(char **input, t_minishell *shell)
 {
 	if (ft_strcmp(input[0], ">"))
 	{
@@ -28,7 +28,7 @@ static int ft_cat_redirect(char **input, t_minishell *shell)
 	}
 	if (ft_strcmp(input[0], ">>"))
 	{
-		shell->fd_out = open(input[1],  O_WRONLY | O_APPEND | O_CREAT, 0664);
+		shell->fd_out = open(input[1], O_WRONLY | O_APPEND | O_CREAT, 0664);
 		if (shell->fd_out < 0)
 		{
 			printf("%s: file could not be found or created\n", input[1]);
@@ -39,9 +39,9 @@ static int ft_cat_redirect(char **input, t_minishell *shell)
 	return (1);
 }
 
-static void ft_execve_cat(char **input, t_minishell *shell, char *cmd)
+static void	ft_execve_cat(char **input, t_minishell *shell, char *cmd)
 {
-	int i;
+	int		i;
 	pid_t	pid;
 
 	i = 0;
@@ -65,7 +65,7 @@ static void ft_execve_cat(char **input, t_minishell *shell, char *cmd)
 	}
 }
 
-void ft_cat(char **input, t_minishell *shell, char *cmd)
+void	ft_cat(char **input, t_minishell *shell, char *cmd)
 {
 	int		i;
 	int		j;

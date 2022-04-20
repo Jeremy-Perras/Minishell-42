@@ -6,18 +6,21 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:05:34 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 15:14:33 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:18:50 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-static void ft_print_echo(char **args, int fd, int flag)
+static void	t_print_echo(char **args, int fd, int flag)
 {
-	int i = -1;
+	int	i;
+	int	j;
+
+	i = -1;
 	while (args[++i])
 	{
-		int j = -1;
+		j = -1;
 		while (args[i][++j])
 		{
 			if (args[i][j] != '\"' && args[i][j] != '\'')
@@ -29,7 +32,8 @@ static void ft_print_echo(char **args, int fd, int flag)
 		ft_putchar_fd('\n', fd);
 }
 
-static void	ft_redirect_echo(char **input, t_minishell *shell, int flag, char **args)
+static void	ft_redirect_echo(char **input, t_minishell *shell,
+		int flag, char **args)
 {
 	if (ft_strcmp(input[0], ">"))
 	{
@@ -47,7 +51,7 @@ static void	ft_redirect_echo(char **input, t_minishell *shell, int flag, char **
 	if (ft_strcmp(input[0], ">>"))
 	{
 		shell->fd_out = open(input[1], \
-			O_WRONLY | O_APPEND| O_CREAT, 0664);
+			O_WRONLY | O_APPEND | O_CREAT, 0664);
 		if (shell->fd_out < 0)
 		{
 			printf("%s: No such file or directory\n", input[1]);
@@ -58,7 +62,7 @@ static void	ft_redirect_echo(char **input, t_minishell *shell, int flag, char **
 	}
 }
 
-static void ft_free_args(char **args)
+static void	ft_free_args(char **args)
 {
 	int	i;
 
@@ -90,7 +94,7 @@ void	ft_buildin_echo(t_minishell *shell)
 		ft_redirect_echo(shell->input2 + i, shell, flag, args);
 	else
 		ft_print_echo(args, STDOUT_FILENO, flag);
-		ft_free_args(args);
+	ft_free_args(args);
 	free(g_env[0]);
 	g_env[0] = ft_strdup(ft_itoa(0));
 }

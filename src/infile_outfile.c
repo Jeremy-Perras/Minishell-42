@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:25:32 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 12:12:33 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:24:56 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static void	ft_args(char **input, t_minishell *shell)
 	dup2(shell->fd_in, STDIN_FILENO);
 }
 
-
-void ft_redirection(char **input, t_minishell *shell)
+void	ft_redirection(char **input, t_minishell *shell)
 {
 	int	i;
 
