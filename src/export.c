@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:17:20 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 10:25:25 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/21 12:41:41 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	ft_buildin_export3(t_minishell *shell, int *flag)
 	{
 		while (shell->input2[1][j] != '=')
 			j++;
-		if (!(ft_strncmp(g_env[i], shell->input2[1], j)))
+		if (!(ft_strncmp(g_env[i], shell->input2[1], j)
+				&& shell->input2[1][j] == '='))
 					*flag = 1;
 		i++;
 		j = 0;
