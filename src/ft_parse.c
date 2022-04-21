@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 17:09:03 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/21 16:19:50 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static char	*ft_replace(char *buf, char **env, int index)
 	buf[i] = 0;
 	tmp = ft_strdup(buf);
 	buf2 = ft_replace2(var, index, env, buf);
+	free(tmp);
 	return (buf2);
 }
 
@@ -97,8 +98,13 @@ static char	*ft_dollar(char *buf, char **env)
 			quote++;
 		if (buf[i] == '$' && ft_isalnum(buf[i + 1]) && quote != 1)
 		{
+			// if (buf2)
+			// 	free(buf2);
 			buf2 = ft_replace(buf, env, i);
-			return (buf2);
+			//free(buf);
+			buf = buf2;
+			free(buf2);
+			//return (buf2);
 		}
 	}
 	return (buf);

@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:24:15 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/21 13:06:01 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 16:17:43 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	*ft_replace2(char *var, int index, char **env, char *buf)
 		}
 	}
 	tmp2 = ft_strjoin(tmp, "");
+	printf("Command not found\n");
 	buf2 = ft_strjoin(tmp2, &buf[index]);
 	free(tmp);
 	free(tmp2);
