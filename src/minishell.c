@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 19:24:29 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 11:34:05 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ static void	ft_free_shell(t_minishell *shell)
 			free (shell->path[i]);
 		free(shell->path);
 	}
+	if (shell->input)
+	{
+		j = -1;
+		while (shell->input[++j])
+			free(shell->input[j]);
+		free(shell->input);
+	}
+	if(shell->input2)
+	 	free(shell->input2);
 	j = 2;
 	while (++j < 100)
 		close(j);

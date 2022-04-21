@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:17:14 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 17:55:44 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 11:27:23 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_buildin_unset(t_minishell *shell)
 	}
 	else
 	{
+		i++;
 		while (g_env[i])
 		{
 			(g_env)[i] = (g_env)[i + 1];

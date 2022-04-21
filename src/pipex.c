@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 08:50:00 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/21 11:30:17 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@ static void	ft_clean(char *argv, t_minishell *shell)
 
 	i = -1;
 	j = -1;
-	if (shell->input)
-	{
-		while (shell->input[++j])
-			free(shell->input[j]);
-		free(shell->input);
-	}
 	shell->input = ft_split2(argv, " \t");
 	shell->input2 = (char **)malloc(sizeof(char **) * 5);
 	while (shell->input[++i])
@@ -46,10 +40,7 @@ static char	**ft_path(char **env)
 	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
 	if (!env[i])
-	{
-		path = ft_strdup("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:");
-		path = ft_strjoin(path, "/usr/local/munki:/Library/Apple/usr/bin");
-	}
+		return (NULL);
 	else
 		path = env[i] + 5;
 	mypath = ft_split(path, ':');
@@ -74,11 +65,17 @@ static char	*ft_cmd(char *cmd)
 		return (cmd);
 	i = 0;
 	mypath = ft_path(g_env);
-	while (mypath[i])
+	while (mypath && mypath[i])
 	{
 		cmd2 = ft_strjoin(mypath[i], cmd);
 		if (access(cmd2, F_OK) == 0)
+		{
+			int j = -1;
+			while (mypath[++j])
+				free(mypath[j]);
+			free(mypath);
 			return (cmd2);
+		}
 		free(cmd2);
 		i++;
 	}
