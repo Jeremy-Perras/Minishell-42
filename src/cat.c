@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 10:42:30 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 16:16:48 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/21 14:57:51 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,9 @@ void	ft_cat(char **input, t_minishell *shell, char *cmd)
 	i = 0;
 	while (input[++i][0] == '-')
 		shell->flags[i] = ft_strdup(input[i]);
+	shell->flags[i] = NULL;
 	j = -1;
-	while (input[++j])
+	while (*input && input[++j])
 	{
 		if (ft_strcmp(input[j], ">") || ft_strcmp(input[j], ">>"))
 			ft_cat_redirect(input + j, shell);

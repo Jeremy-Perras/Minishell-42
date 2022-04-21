@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 12:43:31 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 15:35:35 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*********************************** CLEAN ***********************************/
 
-static void	ft_clean(char *argv, t_minishell *shell)
+static int	ft_clean(char *argv, t_minishell *shell)
 {
 	int	i;
 	int	j;
@@ -22,10 +22,13 @@ static void	ft_clean(char *argv, t_minishell *shell)
 	i = -1;
 	j = -1;
 	shell->input = ft_split2(argv, " \t");
+	if (!*(shell->input))
+		return (0);
 	shell->input2 = (char **)malloc(sizeof(char **) * 5);
 	while (shell->input[++i])
 		shell->input2[i] = quote_ignore(shell->input[i]);
 	shell->input2[i] = NULL;
+	return (1);
 }
 /*********************************** FT_CMD ***********************************/
 
@@ -112,7 +115,7 @@ static char	*ft_choose(t_minishell *shell)
 
 void	pipex(char *buf, t_minishell *shell)
 {
-	pid_t	parent;
+//	pid_t	parent;
 	int		j;
 	char	*cmd;
 
@@ -120,13 +123,14 @@ void	pipex(char *buf, t_minishell *shell)
 	shell->path = ft_split(buf, '|');
 	while (shell->path[++j])
 	{
-		ft_clean(shell->path[j], shell);
+		if (!ft_clean(shell->path[j], shell))
+			return ;
 		cmd = ft_choose(shell);
 		if (cmd)
 		{
 			pipe(shell->end);
-			parent = fork();
-			if (!parent)
+		//	parent = fork();
+			if (fork() == 0)
 			{
 				if (shell->path[j + 1])
 					dup2(shell->end[1], STDOUT_FILENO);

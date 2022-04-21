@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:05:34 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 16:51:44 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/21 14:41:47 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_print_echo(char **args, int fd, int flag)
 	int	j;
 
 	i = -1;
-	while (args[++i])
+	while (args && args[++i])
 	{
 		j = -1;
 		while (args[i][++j])
@@ -90,6 +90,7 @@ void	ft_buildin_echo(t_minishell *shell)
 	j = -1;
 	while (shell->input2[++i] && shell->input2[i][0] != '>')
 		args[++j] = ft_strdup(shell->input2[i]);
+	args[j + 1] = NULL;
 	if (shell->input2[i] && shell->input2[i][0] == '>')
 		ft_redirect_echo(shell->input2 + i, shell, flag, args);
 	else
