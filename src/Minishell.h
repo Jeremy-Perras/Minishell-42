@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 17:27:00 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 12:16:42 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,5 @@ void	pipex(char *buf, t_minishell *shell);
 int		ft_strcmp(char *s1, char *s2);
 char	*quote_ignore(char *input);
 char	*ft_replace2(char *var, int index, char **env, char *buf);
+void	ft_free_mypath(char **mypath);
 #endif

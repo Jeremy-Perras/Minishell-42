@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 11:30:17 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 12:16:03 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,13 @@ static char	*ft_cmd(char *cmd)
 		cmd2 = ft_strjoin(mypath[i], cmd);
 		if (access(cmd2, F_OK) == 0)
 		{
-			int j = -1;
-			while (mypath[++j])
-				free(mypath[j]);
-			free(mypath);
+			ft_free_mypath(mypath);
 			return (cmd2);
 		}
 		free(cmd2);
 		i++;
 	}
+	ft_free_mypath(mypath);
 	printf("%s: Command not found\n", cmd);
 	free(g_env[0]);
 	g_env[0] = ft_strdup(ft_itoa(127));
