@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 18:26:46 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 08:50:00 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ static char	*ft_choose(t_minishell *shell)
 		ft_buildin_pwd(shell);
 	else if (ft_strcmp(shell->input2[i], "unset"))
 		ft_buildin_unset(shell);
-	else if (ft_strcmp(shell->input2[i], "env"))
-		ft_buildin_env(shell);
 	else
 		return (ft_cmd(shell->input2[i]));
 	return (NULL);
