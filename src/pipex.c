@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 12:21:05 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 12:43:31 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	*ft_cmd(char *cmd)
 	int		i;
 
 	if (cmd[0] == '/')
-		return (cmd);
+		return (ft_strdup(cmd));
 	i = 0;
 	mypath = ft_path(g_env);
 	while (mypath && mypath[i])

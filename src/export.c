@@ -6,11 +6,25 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:17:20 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 12:41:41 by jperras          ###   ########.fr       */
+/*   Updated: 2022/04/21 13:02:08 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
+
+static int	ft_strcmp3(char *s1, char *s2)
+{
+	int i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s1[j] && s1[j] != '=')
+		j++;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0' && i < j - 1)
+		i++;
+	return (s1[i] - s2[i]);
+}
 
 static void	ft_buildin_export3(t_minishell *shell, int *flag)
 {
@@ -23,14 +37,13 @@ static void	ft_buildin_export3(t_minishell *shell, int *flag)
 	{
 		while (shell->input2[1][j] != '=')
 			j++;
-		if (!(ft_strncmp(g_env[i], shell->input2[1], j)
-				&& shell->input2[1][j] == '='))
+		if (!(ft_strcmp3(g_env[i], shell->input2[1])))
 					*flag = 1;
 		i++;
 		j = 0;
 	}
 	if (*flag)
-	{	
+	{
 		i--;
 		free(g_env[i]);
 		g_env[i] = ft_strdup(shell->input2[1]);

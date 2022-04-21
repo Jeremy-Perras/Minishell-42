@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:24:15 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/21 12:18:26 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 13:06:01 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	ft_free_mypath(char **mypath)
 	int	i;
 
 	i = 0;
+	if (!mypath)
+		return ;
 	while (mypath[i])
 	{
 		free(mypath[i]);
