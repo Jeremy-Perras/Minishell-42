@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:17:14 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 13:01:54 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 16:27:55 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_strcmp2(char *s1, char *s2)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;

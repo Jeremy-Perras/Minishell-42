@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 15:35:35 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 16:27:45 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ static char	*ft_choose(t_minishell *shell)
 
 void	pipex(char *buf, t_minishell *shell)
 {
-//	pid_t	parent;
 	int		j;
 	char	*cmd;
 
@@ -129,7 +128,6 @@ void	pipex(char *buf, t_minishell *shell)
 		if (cmd)
 		{
 			pipe(shell->end);
-		//	parent = fork();
 			if (fork() == 0)
 			{
 				if (shell->path[j + 1])
