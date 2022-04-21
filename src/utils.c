@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:24:15 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/21 11:14:53 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/04/21 12:16:49 by jperras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,17 @@ char	*ft_replace2(char *var, int index, char **env, char *buf)
 	free(tmp);
 	free(tmp2);
 	return (buf2);
+}
+
+void	ft_free(char **mypath)
+{
+	int	i;
+
+	i = 0;
+	while (mypath[i])
+	{
+		free(mypath[i]);
+		i++;
+	}
+	free(mypath);
 }
