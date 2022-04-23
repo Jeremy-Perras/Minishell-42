@@ -1,7 +1,7 @@
 # Minishell-42
 
 # Table of content :
-* [What is Minishell ?](#what-is-Minishell-)
+* [What is Minishell ?](#What-is-Minishell-)
 * [What is in it ?](#what-is-in-it-)
 * [How does is work ?](#how-does-is-work-)
 
@@ -13,4 +13,55 @@
 <a href="https://zupimages.net/viewer.php?id=22/16/oyx9.png"><img src="https://zupimages.net/up/22/16/oyx9.png" alt="" /></a>
 
 ### How does is work ?
-<div style="padding:52.2% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/702307178?h=a9e079c8d4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Minishell"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+![Screen Recording 2022-04-23 at 10 53 57 AM](https://user-images.githubusercontent.com/89851173/164888128-7a2a4590-0d90-4d8e-a18b-69f5def921ce.gif)
+
+### Dependencies
+#### Install readline with [brew](https://brew.sh/)
+```
+brew install readline
+```
+
+```
+brew link --force readline
+```
+
+Add the path to the lib
+
+Replace ~/.zshrc with ~/.bashrc if you use bash instead of zsh
+```
+echo 'export C_INCLUDE_PATH="/usr/local/opt/readline/include:$C_INCLUDE_PATH"' >> ~/.zshrc
+```
+```
+echo 'export LIBRARY_PATH="/usr/local/opt/readline/lib:$LIBRARY_PATH"' >> ~/.zshrc
+```
+```
+source ~/.zshrc
+```
+
+#### Install readline on 42 Macs
+
+Install Brew, <b>only if it is not already installed:</b>
+
+```
+rm -rf $HOME/.brew && git clone --depth=1 https://github.com/Homebrew/brew $HOME/.brew && echo 'export PATH=$HOME/.brew/bin:$PATH' >> $HOME/.zshrc && source $HOME/.zshrc && brew update
+```
+
+Install Readline library:
+```
+brew install readline
+```
+
+```
+brew link --force readline
+```
+
+```
+echo 'export C_INCLUDE_PATH="$HOME/.brew/include:$C_INCLUDE_PATH"' >> ~/.zshrc
+```
+
+```
+echo 'export LIBRARY_PATH="$HOME/.brew/lib:$LIBRARY_PATH"' >> ~/.zshrc
+```
+```
+source ~/.zshrc
+```
