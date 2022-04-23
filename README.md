@@ -26,4 +26,4 @@ brew install readline
 brew link --force readline
 ```
 
-Add the path to the lib
+Add the path to the lib then log in again
