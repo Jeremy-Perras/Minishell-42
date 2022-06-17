@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:34:45 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/20 15:15:07 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:31:49 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,16 @@ void	ft_buildin_pwd(t_minishell *shell)
 {
 	char	tmp[2048];
 
+	if (shell->input[1] && !(ft_strcmp(shell->input[1], ">"))
+		&& !(ft_strcmp(shell->input[1], ">>")))
+	{
+		printf("pwd: too many arguments\n");
+		return ;
+	}
 	if (getcwd(tmp, sizeof(tmp)) == NULL)
 	{
 		printf("Pwd error");
-		free(g_env[0]);
-		g_env[0] = ft_strdup(ft_itoa(1));
+		g_st = 1;
 		return ;
 	}
 	if (shell->input2[1])
@@ -57,6 +62,5 @@ void	ft_buildin_pwd(t_minishell *shell)
 	}
 	else
 		printf("%s\n", tmp);
-	free(g_env[0]);
-	g_env[0] = ft_strdup(ft_itoa(0));
+	g_st = 0;
 }

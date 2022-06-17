@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 12:18:10 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:31:25 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <term.h>
 # include <signal.h>
 
-char	**g_env;
+int	g_st;
 
 typedef struct s_minishell
 {
@@ -37,6 +37,9 @@ typedef struct s_minishell
 	int		end[2];
 	char	**input;
 	char	**input2;
+	int		quote_pipe;
+	int		status;
+
 }		t_minishell;
 
 typedef struct s_var
@@ -47,12 +50,14 @@ typedef struct s_var
 /*
  * minishell.c
  */
-void	ft_prompt(void);
+void	ft_prompt(char **envp);
+void	ft_free_shell(t_minishell *shell);
 /*
  * ----- buildin -----
  */
 void	ft_buildin_cd(t_minishell *shell);
-void	ft_buildin_echo(t_minishell *shell);
+void	ft_buildin_echo(char *buf, t_minishell *shell);
+void	ft_buildin_echo2(char **input, t_minishell *shell);
 void	ft_buildin_pwd(t_minishell *shell);
 void	ft_buildin_unset(t_minishell *shell);
 void	ft_buildin_exit(t_minishell *shell);
@@ -102,4 +107,5 @@ int		ft_strcmp(char *s1, char *s2);
 char	*quote_ignore(char *input);
 char	*ft_replace2(char *var, int index, char **env, char *buf);
 void	ft_free_mypath(char **mypath);
+int		ft_quote_pipe(char *buf);
 #endif

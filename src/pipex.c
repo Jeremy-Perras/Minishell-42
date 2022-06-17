@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 16:27:45 by jperras          ###   ########.fr       */
+/*   Updated: 2022/05/24 19:10:30 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	**ft_path(char **env)
 	return (mypath);
 }
 
-static char	*ft_cmd(char *cmd)
+static char	*ft_cmd(char *cmd, t_minishell *shell)
 {
 	char	**mypath;
 	char	*cmd2;
@@ -67,7 +67,7 @@ static char	*ft_cmd(char *cmd)
 	if (cmd[0] == '/')
 		return (ft_strdup(cmd));
 	i = 0;
-	mypath = ft_path(g_env);
+	mypath = ft_path(shell->env);
 	while (mypath && mypath[i])
 	{
 		cmd2 = ft_strjoin(mypath[i], cmd);
@@ -81,8 +81,7 @@ static char	*ft_cmd(char *cmd)
 	}
 	ft_free_mypath(mypath);
 	printf("%s: Command not found\n", cmd);
-	free(g_env[0]);
-	g_env[0] = ft_strdup(ft_itoa(127));
+	g_st = 127;
 	return (NULL);
 }
 
@@ -90,7 +89,7 @@ static char	*ft_cmd(char *cmd)
 
 static char	*ft_choose(t_minishell *shell)
 {
-	int	i;
+	int		i;
 
 	if (ft_check_files(shell))
 		return (NULL);
@@ -107,8 +106,10 @@ static char	*ft_choose(t_minishell *shell)
 		ft_buildin_pwd(shell);
 	else if (ft_strcmp(shell->input2[i], "unset"))
 		ft_buildin_unset(shell);
+	else if (ft_strcmp(shell->input2[i], "echo"))
+		return (ft_strdup("/bin/echo"));
 	else
-		return (ft_cmd(shell->input2[i]));
+		return (ft_cmd(shell->input2[i], shell));
 	return (NULL);
 }
 /*********************************** PIPEX ************************************/
@@ -125,7 +126,7 @@ void	pipex(char *buf, t_minishell *shell)
 		if (!ft_clean(shell->path[j], shell))
 			return ;
 		cmd = ft_choose(shell);
-		if (cmd)
+		if (cmd || ft_strcmp(shell->input2[0], "echo"))
 		{
 			pipe(shell->end);
 			if (fork() == 0)

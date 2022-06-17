@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/21 15:34:04 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 19:03:58 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	ft_parent_process(t_minishell *shell)
 {
 	close(shell->end[1]);
 	shell->fd_in = shell->end[0];
-	wait(NULL);
+	waitpid(-1, &(shell->status), 0);
+	g_st = shell->status;
 }
 
 /*********************************** EXECVE ***********************************/
@@ -36,13 +37,13 @@ void	ft_parent_process(t_minishell *shell)
 void	ft_exceve(char **input, t_minishell *shell, char *cmd)
 {
 	if (ft_strcmp(input[0], "echo"))
-		ft_buildin_echo(shell);
-	else if (ft_strcmp(input[0], "env"))
+		ft_buildin_echo2(input, shell);
+	if (ft_strcmp(input[0], "env"))
 		ft_buildin_env(shell);
 	else
 	{
 		ft_flags(input, shell);
-		if (execve(cmd, shell->flags, g_env) == -1)
+		if (execve(cmd, shell->flags, shell->env) == -1)
 			printf("%s: No such file or directory\n", cmd);
 	}
 }

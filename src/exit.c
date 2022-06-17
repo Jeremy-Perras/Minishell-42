@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 10:48:25 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 16:04:07 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:28:04 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	ft_buildin_exit(t_minishell *shell)
 	c[1] = ft_strdup("-f");
 	c[2] = ft_strdup(".heredoc");
 	c[3] = NULL;
-	(void) shell;
-	free(g_env[0]);
-	g_env[0] = ft_strdup(ft_itoa(0));
-	execve("/bin/rm", c, g_env);
+	ft_free_shell(shell);
+	execve("/bin/rm", c, NULL);
 	exit(0);
 }

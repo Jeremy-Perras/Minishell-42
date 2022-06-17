@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:05:50 by jperras           #+#    #+#             */
-/*   Updated: 2022/04/21 08:47:49 by jperras          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:26:22 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ void	ft_buildin_cd(t_minishell *shell)
 	}
 	if (chdir(shell->input2[1]) == -1)
 	{
-		free(g_env[0]);
-		g_env[0] = ft_strdup(ft_itoa(1));
+		g_st = 1;
 		printf("cd: no such file or directory: %s\n", shell->input2[1]);
 		return ;
 	}
-	free(g_env[0]);
-	g_env[0] = ft_strdup(ft_itoa(0));
+	g_st = 0;
 }

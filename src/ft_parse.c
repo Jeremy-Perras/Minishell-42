@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/21 16:26:53 by jperras          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:28:26 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ static int	ft_status(char *buf)
 		i++;
 	if (buf[i] == '$' && buf[i + 1] == '?')
 	{
-		printf("%s\n", g_env[0]);
-		free(g_env[0]);
-		g_env[0] = ft_strdup(ft_itoa(0));
+		printf("%d\n", g_st);
+		g_st = 0;
 		return (1);
 	}
 	return (0);
@@ -117,6 +116,13 @@ void	ft_parse(char *buf, t_minishell *shell)
 	if (ft_status(buf))
 		return ;
 	buf2 = ft_dollar(buf, shell->env);
+	shell->quote_pipe = ft_quote_pipe(buf2);
 	shell->fd_in = 0;
-	pipex(buf2, shell);
+	if (ft_strncmp(buf2, "echo", 4) == 0 && shell->quote_pipe)
+	{
+		ft_buildin_echo(buf2, shell);
+		return ;
+	}
+	else
+		pipex(buf2, shell);
 }

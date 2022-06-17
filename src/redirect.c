@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 11:59:26 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/04/20 15:06:22 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/22 23:40:50 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**ft_infile(char **input, t_minishell *shell)
 		if (shell->fd_in < 0)
 		{
 			printf("%s: No such file or directory\n", input[1]);
-			exit(0);
+			exit(1);
 		}
 		dup2(shell->fd_in, STDIN_FILENO);
 		return (input + 2);
@@ -74,7 +74,7 @@ void	ft_append(char **input, t_minishell *shell)
 	if (shell->fd_out < 0)
 	{
 		printf("%s: No such file or directory\n", input[0]);
-		exit(0);
+		exit(1);
 	}
 	dup2(shell->fd_out, STDOUT_FILENO);
 }
@@ -87,7 +87,7 @@ void	ft_redirect(char **input, t_minishell *shell)
 	if (shell->fd_out < 0)
 	{
 		printf("%s: No such file or directory\n", input[0]);
-		exit(0);
+		exit(1);
 	}
 	dup2(shell->fd_out, STDOUT_FILENO);
 }
