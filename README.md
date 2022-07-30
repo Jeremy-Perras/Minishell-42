@@ -6,7 +6,7 @@
 * [How does is work ?](#how-does-is-work-)
 
 ### What is Minishell ?
- Minishell is a group project at 42 github ofmy teammate : https://github.com/dhaliti/Minishell42. The purpose is to learn how the shell works (man bash). The programm must handle all basic bash features as pipe, fork, and user input management.
+ Minishell is a group project at 42 github of my [teammate](https://github.com/dhaliti/Minishell42). The purpose is to learn how the shell works (man bash). The programm must handle all basic bash features as pipe, fork, and user input management.
  
  ### What is in it ?
  You will need to parse the input of the user then execute the command.
